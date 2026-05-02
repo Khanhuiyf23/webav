@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Học Theo Cụm Từ – EnglishPro THPT</title>
+  <meta name="description" content="Học cụm từ (collocations) tiếng Anh theo chủ đề THPT kèm bài văn mẫu." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='32' height='32' rx='8' fill='%236366f1'/%3E%3Ctext x='16' y='23' text-anchor='middle' fill='white' font-size='18' font-weight='800' font-family='Inter,sans-serif'%3EE%3C/text%3E%3C/svg%3E" />
+  <meta property="og:title" content="H&#7885;c Theo C&#7909;m T&#7915; – EnglishPro THPT" />
+  <meta property="og:description" content="C&#7909;m t&#7915; collocations theo ch&#7911; &#273;&#7873; THPT k&#232;m b&#224;i v&#259;n m&#7851;u." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="vi_VN" />
+  <style>
+    .colloc-page { padding: calc(68px + 30px) 0 60px; min-height: 100vh; }
+    .topic-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; }
+    .topic-tab { padding: 10px 20px; border-radius: var(--radius-full); background: var(--bg-card); border: 1px solid var(--bg-border); color: var(--text-secondary); cursor: pointer; font-size: 0.88rem; font-weight: 500; transition: var(--transition); display: flex; align-items: center; gap: 6px; }
+    .topic-tab:hover { border-color: var(--primary); color: var(--primary-light); }
+    .topic-tab.active { background: var(--gradient-primary); color: white; border-color: transparent; }
+    .subtopic-card { background: var(--bg-card); border: 1px solid var(--bg-border); border-radius: var(--radius-xl); margin-bottom: 24px; overflow: hidden; }
+    .subtopic-header { padding: 20px 24px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+    .subtopic-header h3 { font-size: 1.15rem; color: var(--text-primary); }
+    .subtopic-header .arrow { transition: transform 0.3s; color: var(--text-muted); }
+    .subtopic-header .arrow.open { transform: rotate(180deg); }
+    .subtopic-body { display: none; padding: 0 24px 24px; }
+    .subtopic-body.open { display: block; }
+    .colloc-table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
+    .colloc-table th { text-align: left; padding: 10px 12px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); border-bottom: 1px solid var(--bg-border); }
+    .colloc-table td { padding: 12px; font-size: 0.88rem; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: top; }
+    .colloc-table tr:hover td { background: rgba(99,102,241,0.03); }
+    .colloc-phrase { font-weight: 600; color: var(--primary-light); white-space: nowrap; }
+    .colloc-meaning { color: var(--text-secondary); }
+    .colloc-example { color: var(--text-muted); font-style: italic; font-size: 0.82rem; line-height: 1.5; }
+    .essay-section { background: var(--bg-surface); border: 1px solid var(--bg-border); border-radius: var(--radius-lg); padding: 24px; }
+    .essay-section h4 { font-size: 1rem; margin-bottom: 4px; color: var(--primary-light); }
+    .essay-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 12px; }
+    .essay-content { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.85; white-space: pre-line; }
+    .colloc-count { font-size: 0.75rem; color: var(--text-muted); background: var(--bg-surface); padding: 2px 10px; border-radius: var(--radius-full); }
+    @media (max-width: 768px) {
+      .colloc-page { padding: calc(68px + 16px) 0 40px; }
+      .topic-tabs { gap: 6px; }
+      .topic-tab { padding: 8px 14px; font-size: 0.82rem; }
+      .subtopic-header { padding: 16px; }
+      .subtopic-body { padding: 0 16px 16px; }
+      .colloc-table { display: block; overflow-x: auto; }
+      .colloc-table th, .colloc-table td { padding: 8px; font-size: 0.82rem; }
+      .essay-section { padding: 16px; }
+      .essay-content { font-size: 0.85rem; }
+    }
+    @media (max-width: 480px) {
+      .colloc-table { font-size: 0.78rem; }
+      .colloc-phrase { white-space: normal; }
+      .essay-content { font-size: 0.82rem; line-height: 1.7; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <rect width="28" height="28" rx="8" fill="url(#logoGrad)" />
+          <text x="14" y="20" text-anchor="middle" fill="white" font-size="14" font-weight="800" font-family="Inter">E</text>
+          <defs><linearGradient id="logoGrad" x1="0" y1="0" x2="28" y2="28"><stop offset="0%" stop-color="#6366f1" /><stop offset="100%" stop-color="#8b5cf6" /></linearGradient></defs>
+        </svg>
+      </div>
+      <span>EnglishPro <span class="logo-accent">THPT</span></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="vocabulary.html" class="nav-link">Từ Vựng Oxford</a></li>
+      <li><a href="grammar.html" class="nav-link">Cấu Trúc THPT</a></li>
+      <li><a href="practice.html" class="nav-link">Luyện Đề</a></li>
+      <li><a href="collocations.html" class="nav-link active">Học Cụm Từ</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn-ghost" onclick="openAuthModal('login')" id="loginBtn">Đăng nhập</button>
+      <button class="btn-primary" onclick="openAuthModal('register')" id="registerBtn">Đăng ký</button>
+      <div class="user-menu hidden" id="userMenu">
+        <div class="user-avatar" id="userAvatar">A</div>
+        <span id="userNameDisplay">Học sinh</span>
+        <button class="btn-ghost btn-sm" onclick="logout()">Đăng xuất</button>
+      </div>
+    </div>
+    <button class="nav-toggle" id="navToggle" onclick="toggleNav()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="colloc-page">
+  <div class="container">
+    <h1 class="page-title" style="margin-bottom:8px;">Học Theo <span class="gradient-text">Cụm Từ</span></h1>
+    <p style="color:var(--text-muted);margin-bottom:24px;font-size:0.9rem;">Collocations & bài văn mẫu theo 5 chủ đề THPT Quốc Gia</p>
+
+    <div class="topic-tabs" id="topicTabs"></div>
+    <div id="topicContent"></div>
+  </div>
+</div>
+
+<!-- AUTH MODAL -->
+<div class="modal-overlay" id="authModal" onclick="closeAuthModal(event)">
+  <div class="modal" id="authModalContent">
+    <button class="modal-close" onclick="closeModal()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="modal-tabs"><button class="tab-btn active" id="loginTab" onclick="switchTab('login')">Đăng nhập</button><button class="tab-btn" id="registerTab" onclick="switchTab('register')">Đăng ký</button></div>
+    <div class="tab-content active" id="loginContent">
+      <div class="modal-header"><h2>Chào mừng trở lại! 👋</h2><p>Tiếp tục hành trình học tiếng Anh của bạn</p></div>
+      <form onsubmit="handleLogin(event)"><div class="form-group"><label>Email</label><input type="email" id="loginEmail" placeholder="example@email.com" required /></div><div class="form-group"><label>Mật khẩu</label><input type="password" id="loginPassword" placeholder="••••••••" required /></div><button type="submit" class="btn-primary btn-full">Đăng nhập</button><p style="text-align:center;margin-top:8px;"><a onclick="handleForgotPassword()" style="cursor:pointer;color:var(--primary-light);font-size:0.85rem;">Quên mật khẩu?</a></p></form>
+      <p class="modal-switch">Chưa có tài khoản? <a onclick="switchTab('register')">Đăng ký ngay</a></p>
+    </div>
+    <div class="tab-content" id="registerContent">
+      <div class="modal-header"><h2>Bắt đầu miễn phí! 🚀</h2><p>Tạo tài khoản để theo dõi tiến độ học tập</p></div>
+      <form onsubmit="handleRegister(event)"><div class="form-group"><label>Tên học sinh</label><input type="text" id="regName" placeholder="Nguyễn Văn A" required /></div><div class="form-group"><label>Email</label><input type="email" id="regEmail" placeholder="example@email.com" required /></div><div class="form-group"><label>Mật khẩu</label><input type="password" id="regPassword" placeholder="Tối thiểu 6 ký tự" required /></div><div class="form-group"><label>Mục tiêu điểm THPT</label><select id="regTarget"><option value="6">6.0 – Đủ điểm xét tuyển</option><option value="7">7.0 – Trung bình khá</option><option value="8" selected>8.0 – Khá Giỏi</option><option value="9">9.0 – Xuất sắc</option><option value="10">10.0 – Hoàn hảo tuyệt đối</option></select></div><button type="submit" class="btn-primary btn-full">Tạo tài khoản</button></form>
+      <p class="modal-switch">Đã có tài khoản? <a onclick="switchTab('login')">Đăng nhập</a></p>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <p>&copy; 2025 EnglishPro THPT &middot; <a href="index.html">Trang chủ</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/data-extra.js"></script>
+<script src="js/data-oxford.js"></script>
+<script src="js/data-collocations.js"></script>
+<script src="js/app.js"></script>
+<script>
+let currentCollocTopic = 'education';
+
+function renderTopicTabs() {
+  const tabs = document.getElementById('topicTabs');
+  tabs.innerHTML = COLLOCATION_TOPICS.map(t =>
+    `<button class="topic-tab ${t.id === currentCollocTopic ? 'active' : ''}" onclick="selectCollocTopic('${t.id}')">${t.icon} ${t.title}</button>`
+  ).join('');
+}
+
+function selectCollocTopic(topicId) {
+  currentCollocTopic = topicId;
+  renderTopicTabs();
+  renderTopicContent();
+}
+
+function toggleSubtopic(id) {
+  const body = document.getElementById('body-' + id);
+  const arrow = document.getElementById('arrow-' + id);
+  if (body.classList.contains('open')) {
+    body.classList.remove('open');
+    arrow.classList.remove('open');
+  } else {
+    body.classList.add('open');
+    arrow.classList.add('open');
+  }
+}
+
+function renderTopicContent() {
+  const topic = COLLOCATION_TOPICS.find(t => t.id === currentCollocTopic);
+  if (!topic) return;
+
+  const content = document.getElementById('topicContent');
+  content.innerHTML = topic.subtopics.map(sub => `
+    <div class="subtopic-card">
+      <div class="subtopic-header" onclick="toggleSubtopic('${sub.id}')">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <h3>${sub.title}</h3>
+          <span class="colloc-count">${sub.collocations.length} cụm từ</span>
+        </div>
+        <svg id="arrow-${sub.id}" class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="subtopic-body" id="body-${sub.id}">
+        <table class="colloc-table">
+          <thead>
+            <tr>
+              <th>Cụm từ</th>
+              <th>Nghĩa</th>
+              <th>Ví dụ</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${sub.collocations.map(c => `
+              <tr>
+                <td class="colloc-phrase">${c.phrase}</td>
+                <td class="colloc-meaning">${c.meaning}</td>
+                <td class="colloc-example">${c.example}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+
+        <div class="essay-section">
+          <div class="essay-label">Bài văn mẫu</div>
+          <h4>${sub.essay.title}</h4>
+          <div class="essay-content">${sub.essay.content}</div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  // Auto-open first subtopic
+  if (topic.subtopics.length > 0) {
+    toggleSubtopic(topic.subtopics[0].id);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderTopicTabs();
+  renderTopicContent();
+});
+</script>
+</body>
+</html>

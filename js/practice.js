@@ -41,6 +41,8 @@ function exitMode() {
   document.getElementById('examMode').style.display = 'none';
   document.getElementById('practiceHub').style.display = 'block';
   document.getElementById('practiceFooter').style.display = 'none';
+  const selectorEl = document.getElementById('flashcardSelector');
+  if (selectorEl) selectorEl.style.display = 'none';
 
   // Reset exam
   examTimer && clearInterval(examTimer);
@@ -59,28 +61,118 @@ let fcFlipped = false;
 let fcStats = { easy: 0, hard: 0, forgot: 0 };
 let fcForgotWords = [];
 
+const FC_SECTION_SIZE = 25;
+let fcCurrentTopic = 'all';
+let fcCurrentSection = 0;
+
+function getFlashcardSections(topic) {
+  let words;
+  if (topic === 'all') {
+    words = VOCABULARY;
+  } else {
+    words = VOCABULARY.filter(w => w.topic === topic);
+  }
+  const sections = [];
+  for (let i = 0; i < words.length; i += FC_SECTION_SIZE) {
+    sections.push(words.slice(i, i + FC_SECTION_SIZE));
+  }
+  return sections;
+}
+
+function showFlashcardSelector() {
+  document.getElementById('practiceHub').style.display = 'none';
+  document.getElementById('examMode').style.display = 'none';
+  document.getElementById('flashcardMode').style.display = 'none';
+  document.getElementById('practiceFooter').style.display = 'none';
+
+  let selectorEl = document.getElementById('flashcardSelector');
+  if (!selectorEl) {
+    selectorEl = document.createElement('div');
+    selectorEl.id = 'flashcardSelector';
+    document.querySelector('.container.practice-hub-content')?.parentElement?.appendChild(selectorEl) ||
+      document.body.appendChild(selectorEl);
+  }
+  selectorEl.style.display = 'block';
+
+  const topics = [
+    { id: 'all', label: 'T\u1ea5t c\u1ea3', icon: '\ud83d\udcda' },
+    { id: 'education', label: 'Education', icon: '\ud83c\udf93' },
+    { id: 'environment', label: 'Environment', icon: '\ud83c\udf0d' },
+    { id: 'technology', label: 'Technology', icon: '\ud83d\udcbb' },
+    { id: 'culture', label: 'Culture', icon: '\ud83c\udfad' },
+    { id: 'health', label: 'Health', icon: '\ud83c\udfe5' }
+  ];
+
+  const sections = getFlashcardSections(fcCurrentTopic);
+
+  selectorEl.innerHTML = `
+    <div class="page-header practice-page-header" style="padding-top:calc(68px + 24px)">
+      <div class="container">
+        <div class="breadcrumb"><a href="practice.html">Luy\u1ec7n T\u1eadp</a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg><span>Ch\u1ecdn Ph\u1ea7n Flashcard</span></div>
+        <h1 class="page-title">Ch\u1ecdn <span class="gradient-text">Ph\u1ea7n H\u1ecdc</span></h1>
+        <p class="page-subtitle">Chia nh\u1ecf t\u1eeb v\u1ef1ng th\u00e0nh c\u00e1c ph\u1ea7n ${FC_SECTION_SIZE} t\u1eeb \u0111\u1ec3 d\u1ec5 h\u1ecdc h\u01a1n</p>
+      </div>
+    </div>
+    <div class="container" style="padding-bottom:60px;">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;">
+        ${topics.map(t => `<button onclick="fcCurrentTopic='${t.id}';showFlashcardSelector()" class="btn-ghost" style="padding:8px 16px;border-radius:var(--radius-full);${fcCurrentTopic === t.id ? 'background:var(--gradient-primary);color:white;border-color:transparent;' : ''}">${t.icon} ${t.label}</button>`).join('')}
+      </div>
+      <p style="color:var(--text-muted);margin-bottom:16px;font-size:0.88rem;">T\u1ed5ng: <strong>${sections.reduce((a,s) => a + s.length, 0)}</strong> t\u1eeb \u00b7 ${sections.length} ph\u1ea7n</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;">
+        ${sections.map((sec, i) => {
+          const masteredCount = sec.filter(w => getWordStatus(w.id) === 2).length;
+          const learningCount = sec.filter(w => getWordStatus(w.id) === 1).length;
+          const pct = Math.round((masteredCount / sec.length) * 100);
+          return `<div onclick="startFlashcardSection(${i})" style="background:var(--bg-card);border:1px solid var(--bg-border);border-radius:var(--radius-xl);padding:20px;cursor:pointer;transition:var(--transition);" onmouseover="this.style.borderColor='rgba(99,102,241,0.4)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--bg-border)';this.style.transform=''">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+              <h3 style="font-size:1rem;color:var(--text-primary);">Ph\u1ea7n ${i + 1}</h3>
+              <span style="font-size:0.75rem;color:var(--text-muted);">${sec.length} t\u1eeb</span>
+            </div>
+            <p style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:8px;">${sec.slice(0,5).map(w => w.word).join(', ')}...</p>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div style="flex:1;height:4px;background:var(--bg-border);border-radius:2px;overflow:hidden;">
+                <div style="width:${pct}%;height:100%;background:var(--gradient-primary);border-radius:2px;"></div>
+              </div>
+              <span style="font-size:0.7rem;color:var(--text-muted);">${pct}%</span>
+            </div>
+            <div style="display:flex;gap:12px;margin-top:8px;font-size:0.72rem;color:var(--text-muted);">
+              <span style="color:var(--accent-green);">\u2713 ${masteredCount} thu\u1ed9c</span>
+              <span style="color:var(--accent-orange);">\u25cf ${learningCount} \u0111ang h\u1ecdc</span>
+              <span>\u25cb ${sec.length - masteredCount - learningCount} m\u1edbi</span>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+      <div style="margin-top:24px;text-align:center;">
+        <button onclick="document.getElementById('flashcardSelector').style.display='none';document.getElementById('practiceHub').style.display='block'" class="btn-ghost" style="padding:10px 24px;">← Quay l\u1ea1i</button>
+      </div>
+    </div>
+  `;
+}
+
+function startFlashcardSection(sectionIndex) {
+  fcCurrentSection = sectionIndex;
+  const sections = getFlashcardSections(fcCurrentTopic);
+  const sectionWords = sections[sectionIndex] || sections[0];
+  _startFlashcardWithWords(sectionWords);
+}
+
 function startFlashcard() {
+  showFlashcardSelector();
+}
+
+function _startFlashcardWithWords(words) {
   practiceMode = 'flashcard';
   sessionStartTime = Date.now();
 
-  // Select words: prioritize "learning" words, then new ones
-  const learningWords = VOCABULARY.filter(w => getWordStatus(w.id) === 1);
-  const newWords = VOCABULARY.filter(w => getWordStatus(w.id) === 0);
-  const masteredWords = VOCABULARY.filter(w => getWordStatus(w.id) === 2);
-
-  // Session: up to 20 words
-  fcWords = [...learningWords, ...newWords].slice(0, 20);
-  if (fcWords.length < 10) fcWords = [...fcWords, ...masteredWords].slice(0, 20);
-  if (fcWords.length === 0) fcWords = VOCABULARY.slice(0, 20);
-
-  // Shuffle
-  fcWords = fcWords.sort(() => Math.random() - 0.5);
-
+  fcWords = words.sort(() => Math.random() - 0.5);
   fcIndex = 0;
   fcFlipped = false;
   fcStats = { easy: 0, hard: 0, forgot: 0 };
   fcForgotWords = [];
 
+  const selectorEl = document.getElementById('flashcardSelector');
+  if (selectorEl) selectorEl.style.display = 'none';
   document.getElementById('practiceHub').style.display = 'none';
   document.getElementById('examMode').style.display = 'none';
   document.getElementById('flashcardMode').style.display = 'block';

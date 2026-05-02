@@ -626,10 +626,24 @@
   .filter-topics .topic-chip { width: auto; }
   .sidebar-stats { display: none; }
 }
+@media (max-width: 768px) {
+  .vocab-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: var(--space-3); }
+  .page-header { padding: calc(68px + 16px) 0 var(--space-4); }
+  .vocab-search-box { flex-direction: column; gap: var(--space-2); }
+  .vocab-search-box input { width: 100%; }
+  .vocab-view-toggle { display: none; }
+  .pagination { gap: var(--space-2); }
+  .page-btn { padding: 6px 12px; font-size: 0.8rem; }
+  .page-num { width: 32px; height: 32px; font-size: 0.8rem; }
+}
 @media (max-width: 480px) {
   .vocab-grid { grid-template-columns: 1fr; }
-  .word-modal-header { padding: var(--space-5) var(--space-5) var(--space-4); }
-  .word-modal-section { padding: var(--space-4) var(--space-5); }
-  .word-modal-actions { padding: var(--space-4) var(--space-5) var(--space-5); flex-wrap: wrap; }
-  .word-modal-name { font-size: 1.8rem; }
+  .word-card-item { padding: var(--space-3) var(--space-4); }
+  .wc-word { font-size: 1rem; }
+  .wc-meaning { font-size: 0.82rem; }
+  .word-modal-header { padding: var(--space-4) var(--space-4) var(--space-3); }
+  .word-modal-section { padding: var(--space-3) var(--space-4); }
+  .word-modal-actions { padding: var(--space-3) var(--space-4) var(--space-4); flex-wrap: wrap; }
+  .word-modal-name { font-size: 1.5rem; }
+  .word-modal-content { max-width: 100%; margin: var(--space-2); }
 }
