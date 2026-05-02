@@ -32,7 +32,7 @@ function updateQuickStats() {
   if (qsDue) qsDue.textContent = Math.max(due, learning);
   if (qsMastered) qsMastered.textContent = mastered;
   if (qsStreak) qsStreak.textContent = currentUser?.streak || 0;
-  if (qsTime) qsTime.textContent = Math.floor(Math.random() * 30 + 5); // Demo
+  if (qsTime) qsTime.textContent = typeof getTodayStudyMinutes === 'function' ? getTodayStudyMinutes() : 0;
 }
 
 function exitMode() {
