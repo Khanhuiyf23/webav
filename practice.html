@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luyện Đề & Flashcard – EnglishPro THPT</title>
+  <meta name="description" content="Luyện flashcard Spaced Repetition và thi thử format mới Bộ GD&ĐT với đồng hồ đếm ngược 50 phút." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/practice.css" />
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="8" fill="url(#logoGrad)"/><text x="14" y="20" text-anchor="middle" fill="white" font-size="14" font-weight="800" font-family="Inter">E</text><defs><linearGradient id="logoGrad" x1="0" y1="0" x2="28" y2="28"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#8b5cf6"/></linearGradient></defs></svg>
+      </div>
+      <span>EnglishPro <span class="logo-accent">THPT</span></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="vocabulary.html" class="nav-link">Từ Vựng Oxford</a></li>
+      <li><a href="grammar.html" class="nav-link">Cấu Trúc THPT</a></li>
+      <li><a href="practice.html" class="nav-link active">Luyện Đề</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn-ghost" onclick="openAuthModal('login')" id="loginBtn">Đăng nhập</button>
+      <button class="btn-primary" onclick="openAuthModal('register')" id="registerBtn">Đăng ký</button>
+      <div class="user-menu hidden" id="userMenu"><div class="user-avatar" id="userAvatar">A</div><span id="userNameDisplay">Học sinh</span><button class="btn-ghost btn-sm" onclick="logout()">Đăng xuất</button></div>
+    </div>
+    <button class="nav-toggle" id="navToggle" onclick="toggleNav()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- PRACTICE HUB (shown when no mode active) -->
+<div id="practiceHub">
+  <div class="page-header practice-page-header">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Trang chủ</a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg><span>Luyện Đề</span></div>
+      <h1 class="page-title">Luyện Tập & <span class="gradient-text">Kiểm Tra</span></h1>
+      <p class="page-subtitle">Chọn chế độ luyện tập phù hợp với mục tiêu của bạn</p>
+    </div>
+  </div>
+
+  <div class="container practice-hub-content">
+    <div class="practice-mode-grid">
+
+      <!-- Flashcard Mode -->
+      <div class="practice-mode-card flashcard-card" onclick="startFlashcard()">
+        <div class="practice-mode-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+            <rect x="2" y="4" width="20" height="16" rx="3"/>
+            <path d="M12 9v6M9 12h6"/>
+          </svg>
+        </div>
+        <h2>Flashcard Spaced Repetition</h2>
+        <p>Học từ vựng theo thuật toán khoa học. Hệ thống tự động điều chỉnh tần suất ôn tập dựa trên mức độ thuộc bài của bạn.</p>
+        <ul class="mode-features">
+          <li>✓ Thuật toán SM-2 Spaced Repetition</li>
+          <li>✓ Lật thẻ với animation mượt</li>
+          <li>✓ Tự đánh giá: Dễ / Khó / Không nhớ</li>
+          <li>✓ Thống kê phiên học chi tiết</li>
+        </ul>
+        <div class="mode-cta">
+          Bắt đầu luyện flashcard
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </div>
+
+      <!-- Exam Mode -->
+      <div class="practice-mode-card exam-card" onclick="startExam()">
+        <div class="practice-mode-icon exam-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+            <path d="M14.5 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7.5L14.5 2z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+        </div>
+        <h2>Thi Thử THPT Quốc Gia</h2>
+        <p>Đề thi thử format mới nhất của Bộ GD&ĐT. Đồng hồ đếm ngược 50 phút — đúng như điều kiện thi thật.</p>
+        <ul class="mode-features">
+          <li>✓ Format mới Bộ GD&ĐT 2025</li>
+          <li>✓ Đọc điền từ, Sắp xếp đoạn văn</li>
+          <li>✓ Đọc hiểu & trả lời câu hỏi</li>
+          <li>✓ Đồng hồ đếm ngược 50 phút</li>
+          <li>✓ Chấm điểm & phân tích sau thi</li>
+        </ul>
+        <div class="mode-cta exam-cta">
+          Bắt đầu thi thử ngay
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="practice-quick-stats" id="practiceQuickStats">
+      <div class="quick-stat">
+        <div class="qs-icon">📚</div>
+        <div class="qs-info">
+          <span class="qs-num" id="qs-due">0</span>
+          <span class="qs-label">Từ cần ôn hôm nay</span>
+        </div>
+      </div>
+      <div class="quick-stat">
+        <div class="qs-icon">🎯</div>
+        <div class="qs-info">
+          <span class="qs-num" id="qs-mastered">0</span>
+          <span class="qs-label">Từ đã thuộc</span>
+        </div>
+      </div>
+      <div class="quick-stat">
+        <div class="qs-icon">🔥</div>
+        <div class="qs-info">
+          <span class="qs-num" id="qs-streak">0</span>
+          <span class="qs-label">Ngày streak</span>
+        </div>
+      </div>
+      <div class="quick-stat">
+        <div class="qs-icon">⏱️</div>
+        <div class="qs-info">
+          <span class="qs-num" id="qs-time">0</span>
+          <span class="qs-label">Phút học hôm nay</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FLASHCARD MODE -->
+<div id="flashcardMode" style="display:none;">
+  <div class="flashcard-header">
+    <button class="back-btn" onclick="exitMode()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      Quay lại
+    </button>
+    <div class="flashcard-header-info">
+      <span class="fc-session-label">Phiên học hôm nay</span>
+      <div class="fc-progress-bar">
+        <div class="fc-progress-fill" id="fcProgressFill" style="width:0%"></div>
+      </div>
+      <span class="fc-counter" id="fcCounter">0 / 0</span>
+    </div>
+    <div class="fc-header-stats">
+      <span class="fc-stat easy">✓ <span id="fcEasyCount">0</span></span>
+      <span class="fc-stat hard">~ <span id="fcHardCount">0</span></span>
+      <span class="fc-stat forgot">✗ <span id="fcForgotCount">0</span></span>
+    </div>
+  </div>
+
+  <div class="flashcard-arena">
+    <div class="flashcard-wrap">
+      <div class="flashcard" id="flashcard" onclick="flipCard()">
+        <div class="flashcard-inner" id="flashcardInner">
+          <!-- FRONT -->
+          <div class="flashcard-front">
+            <div class="fc-top-info">
+              <span class="fc-word-count" id="fcWordCount">1 / 20</span>
+              <span class="fc-level-badge" id="fcLevelBadge">B1</span>
+            </div>
+            <div class="fc-front-content">
+              <h2 class="fc-word" id="fcWord">environment</h2>
+              <p class="fc-ipa" id="fcIpa">/ɪnˈvaɪrənmənt/</p>
+              <div class="fc-pos-tag" id="fcPosTag">noun</div>
+            </div>
+            <div class="fc-hint">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 15l-2 5.5-5.5-5.5H5a2 2 0 00-2 2V19a2 2 0 002 2h14a2 2 0 002-2v-2.5a2 2 0 00-2-2h-4z"/><path d="M9 11V7.5a3 3 0 016 0V11"/></svg>
+              Click để xem nghĩa
+            </div>
+          </div>
+
+          <!-- BACK -->
+          <div class="flashcard-back">
+            <div class="fc-back-word" id="fcBackWord">environment</div>
+            <div class="fc-back-meaning-vn" id="fcBackMeaningVN">môi trường, hoàn cảnh xung quanh</div>
+            <div class="fc-back-meaning-en" id="fcBackMeaningEN">the natural world, as a whole or in a particular geographical area</div>
+            <div class="fc-back-example" id="fcBackExample">
+              <em id="fcExampleText">We need to protect the <strong>environment</strong> for future generations.</em>
+            </div>
+            <div class="fc-back-collocations" id="fcBackCollocations">
+              <span class="collocate-tag">protect the environment</span>
+              <span class="collocate-tag">natural environment</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rating Buttons (shown after flip) -->
+    <div class="fc-rating-buttons" id="fcRatingButtons" style="display:none;">
+      <button class="fc-btn-forgot" onclick="rateCard('forgot')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        Không nhớ
+        <small>Ôn lại ngay</small>
+      </button>
+      <button class="fc-btn-hard" onclick="rateCard('hard')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+        Khó nhớ
+        <small>Ôn sau 1 ngày</small>
+      </button>
+      <button class="fc-btn-easy" onclick="rateCard('easy')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        Dễ nhớ
+        <small>Ôn sau 3 ngày</small>
+      </button>
+    </div>
+
+    <button class="fc-flip-btn" id="fcFlipBtn" onclick="flipCard()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+      Lật thẻ
+    </button>
+  </div>
+
+  <!-- Session Complete -->
+  <div class="fc-session-complete" id="fcSessionComplete" style="display:none;">
+    <div class="session-icon">🎊</div>
+    <h2>Hoàn thành phiên học!</h2>
+    <div class="session-stats-grid">
+      <div class="ss-item easy"><span class="ss-num" id="finalEasy">0</span><span class="ss-label">Dễ nhớ</span></div>
+      <div class="ss-item hard"><span class="ss-num" id="finalHard">0</span><span class="ss-label">Khó nhớ</span></div>
+      <div class="ss-item forgot"><span class="ss-num" id="finalForgot">0</span><span class="ss-label">Chưa nhớ</span></div>
+    </div>
+    <div class="session-accuracy">
+      Độ chính xác: <strong id="sessionAccuracy">0%</strong>
+    </div>
+    <div class="session-btns">
+      <button class="btn-primary" onclick="retryForgotten()">Ôn lại từ chưa nhớ</button>
+      <button class="btn-ghost" onclick="exitMode()">Kết thúc</button>
+    </div>
+  </div>
+</div>
+
+<!-- EXAM MODE -->
+<div id="examMode" style="display:none;">
+  <!-- Exam Config -->
+  <div id="examConfig" class="exam-config-screen">
+    <div class="container">
+      <button class="back-btn" onclick="exitMode()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        Quay lại
+      </button>
+      <div class="exam-config-content">
+        <h2>⚙️ Cấu hình đề thi</h2>
+        <div class="config-grid">
+          <div class="config-item">
+            <label>Thời gian làm bài</label>
+            <select id="examTimeSelect">
+              <option value="50">50 phút (Chuẩn THPT)</option>
+              <option value="30">30 phút (Rút gọn)</option>
+              <option value="20">20 phút (Luyện nhanh)</option>
+            </select>
+          </div>
+          <div class="config-item">
+            <label>Loại đề</label>
+            <select id="examTypeSelect">
+              <option value="mixed">Tổng hợp (khuyến nghị)</option>
+              <option value="vocab">Chỉ từ vựng & điền từ</option>
+              <option value="grammar">Chỉ ngữ pháp</option>
+              <option value="reading">Chỉ đọc hiểu</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn-primary btn-lg btn-start-exam" onclick="beginExam()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Bắt đầu thi thử
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exam Paper -->
+  <div id="examPaper" class="exam-paper" style="display:none;">
+    <div class="exam-topbar">
+      <div class="exam-topbar-left">
+        <span class="exam-title-badge">📝 Đề Thi Thử THPT Quốc Gia</span>
+      </div>
+      <div class="exam-timer" id="examTimer">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span id="timerDisplay">50:00</span>
+      </div>
+      <div class="exam-topbar-right">
+        <span id="answeredCount">0</span> / <span id="totalQuestions">20</span> đã trả lời
+        <button class="btn-submit-exam" onclick="submitExam()">Nộp bài</button>
+      </div>
+    </div>
+
+    <div class="exam-body container">
+      <div class="exam-sections" id="examSections">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Exam Results -->
+  <div id="examResults" class="exam-results-screen" style="display:none;">
+    <div class="container">
+      <div class="exam-results-card">
+        <div class="results-header">
+          <div class="results-trophy" id="resultsTrophy">🏆</div>
+          <h2>Kết quả thi thử</h2>
+        </div>
+
+        <div class="results-score-big">
+          <span class="score-num" id="examFinalScore">8.0</span>
+          <span class="score-max">/ 10.0</span>
+        </div>
+
+        <div class="results-breakdown">
+          <div class="breakdown-item">
+            <span class="breakdown-label">Đúng</span>
+            <span class="breakdown-val correct" id="correctCount">16</span>
+          </div>
+          <div class="breakdown-item">
+            <span class="breakdown-label">Sai</span>
+            <span class="breakdown-val wrong" id="wrongCount">4</span>
+          </div>
+          <div class="breakdown-item">
+            <span class="breakdown-label">Bỏ qua</span>
+            <span class="breakdown-val skipped" id="skippedCount">0</span>
+          </div>
+          <div class="breakdown-item">
+            <span class="breakdown-label">Thời gian</span>
+            <span class="breakdown-val" id="examTimeUsed">32:15</span>
+          </div>
+        </div>
+
+        <div class="results-message" id="resultsMessage">
+          Kết quả tốt! Bạn có thể đạt điểm 8 nếu duy trì phong độ này.
+        </div>
+
+        <div class="results-review-section" id="reviewSection">
+          <h3>📋 Xem lại đáp án</h3>
+          <div id="reviewList"></div>
+        </div>
+
+        <div class="results-actions">
+          <button class="btn-primary" onclick="startExam()">Thi lại ngay</button>
+          <button class="btn-ghost" onclick="exitMode()">Về trang luyện đề</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AUTH MODAL -->
+<div class="modal-overlay" id="authModal" onclick="closeAuthModal(event)">
+  <div class="modal" id="authModalContent">
+    <button class="modal-close" onclick="closeModal()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="modal-tabs"><button class="tab-btn active" id="loginTab" onclick="switchTab('login')">Đăng nhập</button><button class="tab-btn" id="registerTab" onclick="switchTab('register')">Đăng ký</button></div>
+    <div class="tab-content active" id="loginContent">
+      <div class="modal-header"><h2>Chào mừng trở lại! 👋</h2></div>
+      <form onsubmit="handleLogin(event)"><div class="form-group"><label>Email</label><input type="email" id="loginEmail" required /></div><div class="form-group"><label>Mật khẩu</label><input type="password" id="loginPassword" required /></div><button type="submit" class="btn-primary btn-full">Đăng nhập</button></form>
+    </div>
+    <div class="tab-content" id="registerContent">
+      <div class="modal-header"><h2>Bắt đầu miễn phí! 🚀</h2></div>
+      <form onsubmit="handleRegister(event)"><div class="form-group"><label>Tên</label><input type="text" id="regName" required /></div><div class="form-group"><label>Email</label><input type="email" id="regEmail" required /></div><div class="form-group"><label>Mật khẩu</label><input type="password" id="regPassword" required /></div><div class="form-group"><select id="regTarget"><option value="8" selected>8.0</option></select></div><button type="submit" class="btn-primary btn-full">Tạo tài khoản</button></form>
+    </div>
+  </div>
+</div>
+
+<footer class="footer" id="practiceFooter" style="display:none;">
+  <div class="container">
+    <div class="footer-bottom">
+      <p>© 2025 EnglishPro THPT · <a href="index.html">Trang chủ</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/data-extra.js"></script>
+<script src="js/data-oxford.js"></script>
+<script src="js/app.js"></script>
+<script src="js/practice.js"></script>
+</body>
+</html>

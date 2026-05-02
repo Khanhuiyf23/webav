@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EnglishPro THPT – Nền tảng luyện thi Tiếng Anh Quốc Gia</title>
+  <meta name="description"
+    content="Học từ vựng Oxford 3000, cấu trúc ngữ pháp THPT, luyện đề thi thử với thuật toán Spaced Repetition thông minh." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/homepage.css" />
+</head>
+<script src="js/data-oxford.js"></script>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <rect width="28" height="28" rx="8" fill="url(#logoGrad)" />
+            <text x="14" y="20" text-anchor="middle" fill="white" font-size="14" font-weight="800"
+              font-family="Inter">E</text>
+            <defs>
+              <linearGradient id="logoGrad" x1="0" y1="0" x2="28" y2="28">
+                <stop offset="0%" stop-color="#6366f1" />
+                <stop offset="100%" stop-color="#8b5cf6" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span>EnglishPro <span class="logo-accent">THPT</span></span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="vocabulary.html" class="nav-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" />
+            </svg>
+            Từ Vựng Oxford
+          </a></li>
+        <li><a href="grammar.html" class="nav-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14.5 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7.5L14.5 2z" />
+              <polyline points="14 2 14 8 20 8" />
+            </svg>
+            Cấu Trúc THPT
+          </a></li>
+        <li><a href="practice.html" class="nav-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="5 3 19 12 5 21 5 3" />
+            </svg>
+            Luyện Đề
+          </a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="btn-ghost" onclick="openAuthModal('login')" id="loginBtn">Đăng nhập</button>
+        <button class="btn-primary" onclick="openAuthModal('register')" id="registerBtn">Đăng ký</button>
+        <div class="user-menu hidden" id="userMenu">
+          <div class="user-avatar" id="userAvatar">A</div>
+          <span id="userNameDisplay">Học sinh</span>
+          <button class="btn-ghost btn-sm" onclick="logout()">Đăng xuất</button>
+        </div>
+      </div>
+
+      <button class="nav-toggle" id="navToggle" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+      <div class="hero-orb hero-orb-3"></div>
+      <div class="hero-grid"></div>
+    </div>
+
+    <div class="container hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Nền tảng học THPT hàng đầu Việt Nam
+      </div>
+      <h1 class="hero-title">
+        Chinh phục Tiếng Anh<br />
+        <span class="gradient-text">THPT Quốc Gia</span><br />
+        với AI thông minh
+      </h1>
+      <p class="hero-subtitle">
+        Oxford 3000 từ vựng · 14 chuyên đề ngữ pháp · Luyện đề chuẩn Bộ GD&ĐT<br />
+        Thuật toán Spaced Repetition giúp bạn nhớ từ mãi mãi
+      </p>
+
+      <div class="search-wrapper">
+        <div class="search-box" id="heroSearch">
+          <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+          <input type="text" id="heroSearchInput"
+            placeholder="Tra từ hoặc cấu trúc ngữ pháp... (vd: absorb, conditionals)" autocomplete="off"
+            onkeyup="handleHeroSearch(event)" />
+          <button class="search-btn" onclick="doHeroSearch()">Tìm kiếm</button>
+        </div>
+        <div class="search-suggestions" id="searchSuggestions"></div>
+      </div>
+
+      <div class="hero-cta-group">
+        <button class="btn-hero-primary" onclick="window.location.href='practice.html'">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="5 3 19 12 5 21 5 3" />
+          </svg>
+          Bắt đầu bài kiểm tra năng lực
+        </button>
+        <button class="btn-hero-ghost" onclick="window.location.href='vocabulary.html'">
+          Khám phá từ vựng →
+        </button>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-number">3,000+</span>
+          <span class="stat-label">Từ vựng Oxford</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">14</span>
+          <span class="stat-label">Chuyên đề ngữ pháp</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">500+</span>
+          <span class="stat-label">Câu hỏi luyện tập</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">98%</span>
+          <span class="stat-label">Đỗ Đại học</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORD OF THE DAY & GRAMMAR OF THE DAY -->
+  <section class="daily-section">
+    <div class="container">
+      <div class="daily-grid">
+
+        <!-- Word of the Day -->
+        <div class="daily-card word-card" id="wordOfDayCard">
+          <div class="daily-card-header">
+            <div class="daily-tag">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path
+                  d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+              </svg>
+              Từ vựng hôm nay
+            </div>
+            <button class="btn-icon" onclick="playAudio('word-of-day')" title="Phát âm">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                <path d="M19.07 4.93a10 10 0 010 14.14" />
+                <path d="M15.54 8.46a5 5 0 010 7.07" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="word-main">
+            <h2 class="word-name" id="wod-word">absorb</h2>
+            <span class="word-pos" id="wod-pos">verb</span>
+            <span class="word-ipa" id="wod-ipa">/əbˈzɔːb/</span>
+            <span class="word-level level-b2" id="wod-level">B2</span>
+          </div>
+
+          <div class="word-meaning">
+            <p class="meaning-vn" id="wod-meaning-vn">hấp thụ, thu hút, tiếp nhận</p>
+            <p class="meaning-en" id="wod-meaning-en">to take in a liquid, gas, or other substance</p>
+          </div>
+
+          <div class="word-example" id="wod-example">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path
+                d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" />
+            </svg>
+            <em>Students need time to <strong>absorb</strong> all the information in the lesson.</em>
+          </div>
+
+          <div class="word-collocation" id="wod-collocation">
+            <span class="collocate-label">Cụm từ:</span>
+            <span class="collocate-tag">absorb information</span>
+            <span class="collocate-tag">absorb energy</span>
+            <span class="collocate-tag">fully absorbed</span>
+          </div>
+
+          <div class="word-actions">
+            <button class="btn-mastered" onclick="markWordStatus('absorb', 2)">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              Đã thuộc
+            </button>
+            <button class="btn-review" onclick="markWordStatus('absorb', 1)">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="1 4 1 10 7 10" />
+                <path d="M3.51 15a9 9 0 102.13-9.36L1 10" />
+              </svg>
+              Cần ôn lại
+            </button>
+            <a href="vocabulary.html" class="btn-view-more">Xem đầy đủ →</a>
+          </div>
+        </div>
+
+        <!-- Grammar of the Day -->
+        <div class="daily-card grammar-card" id="grammarOfDayCard">
+          <div class="daily-card-header">
+            <div class="daily-tag grammar-tag">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14.5 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7.5L14.5 2z" />
+              </svg>
+              Ngữ pháp hôm nay
+            </div>
+            <span class="grammar-category" id="god-category">Inversions</span>
+          </div>
+
+          <div class="grammar-main">
+            <h2 class="grammar-title" id="god-title">Đảo Ngữ với "Hardly"</h2>
+            <div class="formula-box" id="god-formula">
+              <code>Hardly + had + S + V3/ed + when + S + V2/ed</code>
+            </div>
+          </div>
+
+          <div class="grammar-tip" id="god-tip">
+            <div class="tip-header">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18h6" />
+                <path d="M10 22h4" />
+                <path
+                  d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0018 8 6 6 0 006 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 019 14" />
+              </svg>
+              Dấu hiệu nhận biết
+            </div>
+            <p>Thấy "<strong>Hardly / Scarcely / Barely</strong>" ở đầu câu → Đảo ngữ với <em>had</em></p>
+          </div>
+
+          <div class="grammar-trap" id="god-trap">
+            <div class="trap-header">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+                <line x1="12" y1="9" x2="12" y2="13" />
+                <line x1="12" y1="17" x2="12.01" y2="17" />
+              </svg>
+              Bẫy thường gặp
+            </div>
+            <p>Đừng nhầm với <em>Hardly ever</em> (hiếm khi) — cấu trúc này KHÔNG đảo ngữ!</p>
+          </div>
+
+          <div class="grammar-example" id="god-example">
+            <em>Hardly had she <strong>arrived</strong> when the meeting <strong>started</strong>.</em>
+          </div>
+
+          <a href="grammar.html" class="btn-grammar-full">
+            Học đầy đủ chuyên đề →
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- USER DASHBOARD (shown when logged in) -->
+  <section class="dashboard-section" id="dashboardSection" style="display:none;">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Dashboard của bạn</h2>
+        <p class="section-subtitle">Theo dõi tiến độ học tập hàng ngày</p>
+      </div>
+
+      <div class="dashboard-grid">
+        <!-- Progress Cards -->
+        <div class="progress-card">
+          <div class="progress-card-icon vocab-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" />
+            </svg>
+          </div>
+          <div class="progress-card-info">
+            <span class="progress-label">Từ vựng Oxford</span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar">
+                <div class="progress-fill" id="vocabProgressBar" style="width: 11.6%"></div>
+              </div>
+              <span class="progress-text" id="vocabProgressText">350 / 3000</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="progress-card">
+          <div class="progress-card-icon grammar-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14.5 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7.5L14.5 2z" />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
+            </svg>
+          </div>
+          <div class="progress-card-info">
+            <span class="progress-label">Chuyên đề ngữ pháp</span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar">
+                <div class="progress-fill grammar-fill" id="grammarProgressBar" style="width: 42.8%"></div>
+              </div>
+              <span class="progress-text" id="grammarProgressText">6 / 14</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="streak-card">
+          <div class="streak-icon">🔥</div>
+          <div class="streak-info">
+            <span class="streak-number" id="streakNumber">7</span>
+            <span class="streak-label">ngày học liên tiếp</span>
+          </div>
+          <div class="streak-message">Tuyệt vời! Giữ vững phong độ!</div>
+        </div>
+
+      </div>
+
+      <!-- Heatmap -->
+      <div class="heatmap-section">
+        <div class="heatmap-header">
+          <h3>Lịch sử học tập</h3>
+          <span class="heatmap-legend">
+            <span class="legend-less">Ít</span>
+            <span class="heatmap-cell level-0"></span>
+            <span class="heatmap-cell level-1"></span>
+            <span class="heatmap-cell level-2"></span>
+            <span class="heatmap-cell level-3"></span>
+            <span class="heatmap-cell level-4"></span>
+            <span class="legend-more">Nhiều</span>
+          </span>
+        </div>
+        <div class="heatmap-grid" id="heatmapGrid"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FEATURES SECTION -->
+  <section class="features-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Tại sao chọn <span class="gradient-text">EnglishPro</span>?</h2>
+        <p class="section-subtitle">Được thiết kế đặc biệt cho chương trình THPT Quốc Gia Việt Nam</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+          </div>
+          <h3>Oxford 3000™</h3>
+          <p>Toàn bộ 3000 từ vựng Oxford quan trọng nhất, có phiên âm IPA, âm thanh chuẩn Anh-Mỹ, và ví dụ từ đề thi
+            THPT thực tế.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+          </div>
+          <h3>Spaced Repetition</h3>
+          <p>Thuật toán ôn tập khoa học giúp bạn nhớ từ lâu hơn, tập trung vào những từ bạn hay quên nhất.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+              <path d="M14.5 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7.5L14.5 2z" />
+              <polyline points="14 2 14 8 20 8" />
+            </svg>
+          </div>
+          <h3>14 Chuyên Đề Ngữ Pháp</h3>
+          <p>Đầy đủ công thức, dấu hiệu nhận biết, bẫy thi chuẩn đề THPT, kèm mini-quiz sau mỗi chuyên đề.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+              <polygon points="5 3 19 12 5 21 5 3" />
+            </svg>
+          </div>
+          <h3>Luyện Đề Thật</h3>
+          <p>Format mới nhất của Bộ GD&ĐT: đọc điền từ, sắp xếp đoạn văn, đọc hiểu. Đồng hồ đếm ngược 50 phút.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon" style="background: linear-gradient(135deg, #fa709a, #fee140);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+          </div>
+          <h3>Theo Dõi Tiến Độ</h3>
+          <p>Dashboard cá nhân với heatmap GitHub-style, streak học tập và statistico chi tiết về điểm mạnh/yếu.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon" style="background: linear-gradient(135deg, #a18cd1, #fbc2eb);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+              <path
+                d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
+            </svg>
+          </div>
+          <h3>Học Theo Chủ Đề</h3>
+          <p>5 chủ đề trọng tâm THPT: Education, Environment, Technology, Culture, Health — đúng cấu trúc đề thi.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK TOPICS -->
+  <section class="topics-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">14 Chuyên đề Ngữ pháp Trọng tâm</h2>
+        <p class="section-subtitle">Click vào chuyên đề để bắt đầu học ngay</p>
+      </div>
+
+      <div class="topics-grid" id="topicsGrid">
+        <!-- Rendered by JS -->
+      </div>
+
+      <div class="topics-cta">
+        <a href="grammar.html" class="btn-primary btn-lg">Xem tất cả 14 chuyên đề →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUTH MODAL -->
+  <div class="modal-overlay" id="authModal" onclick="closeAuthModal(event)">
+    <div class="modal" id="authModalContent">
+      <button class="modal-close" onclick="closeModal()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+
+      <div class="modal-tabs">
+        <button class="tab-btn active" id="loginTab" onclick="switchTab('login')">Đăng nhập</button>
+        <button class="tab-btn" id="registerTab" onclick="switchTab('register')">Đăng ký</button>
+      </div>
+
+      <!-- Login Form -->
+      <div class="tab-content active" id="loginContent">
+        <div class="modal-header">
+          <h2>Chào mừng trở lại! 👋</h2>
+          <p>Tiếp tục hành trình học tiếng Anh của bạn</p>
+        </div>
+        <form onsubmit="handleLogin(event)">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="loginEmail" placeholder="example@email.com" required />
+          </div>
+          <div class="form-group">
+            <label>Mật khẩu</label>
+            <input type="password" id="loginPassword" placeholder="••••••••" required />
+          </div>
+          <button type="submit" class="btn-primary btn-full">Đăng nhập</button>
+        </form>
+        <p class="modal-switch">Chưa có tài khoản? <a onclick="switchTab('register')">Đăng ký ngay</a></p>
+      </div>
+
+      <!-- Register Form -->
+      <div class="tab-content" id="registerContent">
+        <div class="modal-header">
+          <h2>Bắt đầu miễn phí! 🚀</h2>
+          <p>Tạo tài khoản để theo dõi tiến độ học tập</p>
+        </div>
+        <form onsubmit="handleRegister(event)">
+          <div class="form-group">
+            <label>Tên học sinh</label>
+            <input type="text" id="regName" placeholder="Nguyễn Văn A" required />
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="regEmail" placeholder="example@email.com" required />
+          </div>
+          <div class="form-group">
+            <label>Mật khẩu</label>
+            <input type="password" id="regPassword" placeholder="Tối thiểu 6 ký tự" required />
+          </div>
+          <div class="form-group">
+            <label>Mục tiêu điểm THPT</label>
+            <select id="regTarget">
+              <option value="6">6.0 – Đủ điểm xét tuyển</option>
+              <option value="7">7.0 – Trung bình khá</option>
+              <option value="8" selected>8.0 – Khá Giỏi</option>
+              <option value="9">9.0 – Xuất sắc</option>
+              <option value="10">10.0 – Hoàn hảo tuyệt đối</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-primary btn-full">Tạo tài khoản</button>
+        </form>
+        <p class="modal-switch">Đã có tài khoản? <a onclick="switchTab('login')">Đăng nhập</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <div class="logo-icon">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <rect width="28" height="28" rx="8" fill="url(#logoGrad2)" />
+                <text x="14" y="20" text-anchor="middle" fill="white" font-size="14" font-weight="800"
+                  font-family="Inter">E</text>
+                <defs>
+                  <linearGradient id="logoGrad2" x1="0" y1="0" x2="28" y2="28">
+                    <stop offset="0%" stop-color="#6366f1" />
+                    <stop offset="100%" stop-color="#8b5cf6" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <span>EnglishPro <span class="logo-accent">THPT</span></span>
+          </a>
+          <p>Nền tảng học Tiếng Anh toàn diện cho học sinh THPT Việt Nam, được thiết kế theo chuẩn đề thi Bộ GD&ĐT.</p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Nội dung học</h4>
+          <ul>
+            <li><a href="vocabulary.html">Từ vựng Oxford 3000</a></li>
+            <li><a href="grammar.html">14 Chuyên đề Ngữ pháp</a></li>
+            <li><a href="practice.html">Luyện đề thi thử</a></li>
+            <li><a href="practice.html">Flashcard thông minh</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Chủ đề THPT</h4>
+          <ul>
+            <li><a href="vocabulary.html?topic=education">Education</a></li>
+            <li><a href="vocabulary.html?topic=environment">Environment</a></li>
+            <li><a href="vocabulary.html?topic=technology">Technology</a></li>
+            <li><a href="vocabulary.html?topic=culture">Culture</a></li>
+            <li><a href="vocabulary.html?topic=health">Health</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Về chúng tôi</h4>
+          <ul>
+            <li><a href="#">Giới thiệu</a></li>
+            <li><a href="#">Phương pháp học</a></li>
+            <li><a href="#">Liên hệ</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 EnglishPro THPT. Được xây dựng dành riêng cho học sinh Việt Nam.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/data-extra.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/homepage.js"></script>
+</body>
+
+</html>

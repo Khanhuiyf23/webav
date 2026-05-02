@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Oxford 3000 Generator</title>
+<style>
+body{font-family:Arial;padding:20px;background:#1a1a2e;color:#eee}
+h1{color:#6366f1}
+textarea{width:100%;height:180px;background:#16213e;color:#0f0;border:1px solid #6366f1;padding:10px;font-size:11px;font-family:monospace}
+#input{color:#eee;height:150px}
+button{margin:8px 4px;padding:10px 20px;background:#6366f1;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:14px}
+#stats{color:#10b981;margin:8px 0}
+</style>
+</head>
+<body>
+<h1>⚡ Oxford 3000 → data-oxford.js Generator</h1>
+<p>1. Dán toàn bộ text Oxford 3000 vào đây:</p>
+<textarea id="inp" placeholder="Dán nội dung Oxford 3000 vào đây..."></textarea>
+<br>
+<button onclick="go()">Generate</button>
+<button onclick="cp()">Copy Output</button>
+<div id="stats"></div>
+<p>2. Output (copy và lưu vào <b>js/data-oxford.js</b>):</p>
+<textarea id="out" readonly></textarea>
+<script>
+const VN={"abandon":"từ bỏ","able":"có thể","about":"về","above":"phía trên","abroad":"ở nước ngoài","absolute":"tuyệt đối","absolutely":"hoàn toàn","accept":"chấp nhận","access":"tiếp cận","accident":"tai nạn","accompany":"đi cùng","account":"tài khoản","accuse":"buộc tội","acquire":"đạt được","across":"qua","act":"hành động","action":"hành động","active":"tích cực","activity":"hoạt động","actor":"diễn viên","actual":"thực sự","actually":"thực ra","add":"thêm","address":"địa chỉ","admire":"ngưỡng mộ","admit":"thừa nhận","adopt":"chấp nhận","adult":"người lớn","advance":"tiến bộ","advantage":"lợi thế","adventure":"phiêu lưu","advertise":"quảng cáo","advice":"lời khuyên","advise":"khuyên","affect":"ảnh hưởng","afford":"có đủ tiền","afraid":"sợ","age":"tuổi","agency":"cơ quan","agree":"đồng ý","agreement":"thỏa thuận","aid":"viện trợ","aim":"mục tiêu","air":"không khí","aircraft":"máy bay","airport":"sân bay","alarm":"báo động","alcohol":"rượu","alive":"còn sống","allow":"cho phép","almost":"hầu như","alone":"một mình","although":"mặc dù","always":"luôn luôn","amazing":"tuyệt vời","ambition":"tham vọng","amount":"số lượng","ancient":"cổ đại","anger":"sự tức giận","angry":"tức giận","animal":"động vật","announce":"thông báo","annoy":"làm phiền","annual":"hàng năm","answer":"câu trả lời","anxious":"lo lắng","apartment":"căn hộ","apologize":"xin lỗi","appear":"xuất hiện","apple":"quả táo","apply":"nộp đơn","appreciate":"trân trọng","approach":"phương pháp","appropriate":"phù hợp","argue":"tranh luận","argument":"lý lẽ","army":"quân đội","arrange":"sắp xếp","arrest":"bắt giữ","arrive":"đến nơi","art":"nghệ thuật","article":"bài báo","artist":"nghệ sĩ","ask":"hỏi","assess":"đánh giá","assignment":"bài tập","assist":"hỗ trợ","assume":"giả định","attack":"tấn công","attend":"tham dự","attention":"sự chú ý","attract":"thu hút","attractive":"hấp dẫn","audience":"khán giả","author":"tác giả","authority":"thẩm quyền","automatic":"tự động","available":"có sẵn","average":"trung bình","avoid":"tránh","award":"giải thưởng","awful":"kinh khủng","baby":"em bé","back":"phía sau","background":"nền tảng","bad":"xấu","bag":"túi xách","bake":"nướng","balance":"cân bằng","ball":"quả bóng","ban":"cấm","bank":"ngân hàng","barrier":"rào cản","base":"cơ sở","basic":"cơ bản","bath":"tắm","battery":"pin","battle":"trận chiến","beach":"bãi biển","beat":"đánh bại","beautiful":"đẹp","beauty":"vẻ đẹp","become":"trở thành","behave":"cư xử","belief":"niềm tin","believe":"tin tưởng","belong":"thuộc về","below":"phía dưới","beyond":"ngoài ra","big":"to lớn","bill":"hóa đơn","biology":"sinh học","bird":"con chim","birth":"sự sinh ra","birthday":"sinh nhật","bite":"cắn","black":"màu đen","blood":"máu","blow":"thổi","board":"hội đồng","boat":"thuyền","body":"cơ thể","boil":"đun sôi","bomb":"bom","book":"sách","border":"biên giới","boring":"nhàm chán","borrow":"mượn","boss":"sếp","bother":"làm phiền","bottle":"chai","brain":"não","brave":"dũng cảm","bread":"bánh mì","break":"phá vỡ","breakfast":"bữa sáng","bridge":"cây cầu","bright":"sáng","brilliant":"xuất sắc","bring":"mang đến","broken":"hỏng","brother":"anh em trai","brown":"màu nâu","build":"xây dựng","building":"tòa nhà","burn":"đốt cháy","bus":"xe buýt","business":"kinh doanh","busy":"bận rộn","buy":"mua","cake":"bánh","call":"gọi","calm":"bình tĩnh","camera":"máy ảnh","campaign":"chiến dịch","cancer":"ung thư","capital":"thủ đô","car":"xe ô tô","care":"chăm sóc","career":"sự nghiệp","careful":"cẩn thận","carry":"mang","cause":"nguyên nhân","celebrate":"kỷ niệm","celebration":"lễ kỷ niệm","century":"thế kỷ","ceremony":"nghi lễ","certain":"chắc chắn","change":"thay đổi","character":"nhân vật","charge":"tính phí","cheap":"rẻ","check":"kiểm tra","chemistry":"hóa học","child":"đứa trẻ","choice":"sự lựa chọn","choose":"chọn","church":"nhà thờ","citizen":"công dân","city":"thành phố","claim":"tuyên bố","class":"lớp học","clean":"sạch sẽ","clear":"rõ ràng","climate":"khí hậu","climb":"leo trèo","clothes":"quần áo","cloud":"đám mây","club":"câu lạc bộ","coach":"huấn luyện viên","coffee":"cà phê","cold":"lạnh","collect":"thu thập","college":"trường đại học","color":"màu sắc","come":"đến","comfortable":"thoải mái","comment":"nhận xét","commit":"cam kết","common":"phổ biến","company":"công ty","compare":"so sánh","compete":"cạnh tranh","competition":"cuộc thi","complain":"phàn nàn","complete":"hoàn thành","complex":"phức tạp","computer":"máy tính","confirm":"xác nhận","conflict":"xung đột","connect":"kết nối","consider":"xem xét","constant":"liên tục","contain":"chứa","context":"ngữ cảnh","continue":"tiếp tục","contrast":"tương phản","control":"kiểm soát","conversation":"cuộc trò chuyện","convince":"thuyết phục","cook":"nấu ăn","copy":"sao chép","cost":"chi phí","count":"đếm","country":"đất nước","couple":"cặp đôi","courage":"can đảm","course":"khóa học","cover":"bao phủ","creative":"sáng tạo","crime":"tội phạm","criticize":"chỉ trích","crowd":"đám đông","cruel":"tàn nhẫn","cure":"chữa trị","current":"hiện tại","custom":"phong tục","customer":"khách hàng","cut":"cắt","cycle":"chu kỳ","dance":"nhảy múa","danger":"nguy hiểm","dangerous":"nguy hiểm","dark":"tối tăm","data":"dữ liệu","date":"ngày tháng","daughter":"con gái","deal":"giao dịch","death":"cái chết","debate":"tranh luận","decide":"quyết định","decision":"quyết định","deep":"sâu","defend":"bảo vệ","define":"định nghĩa","degree":"bằng cấp","deliver":"giao hàng","demonstrate":"chứng minh","deny":"phủ nhận","describe":"mô tả","design":"thiết kế","desire":"mong muốn","destroy":"phá hủy","detail":"chi tiết","detect":"phát hiện","develop":"phát triển","development":"sự phát triển","diet":"chế độ ăn","difference":"sự khác biệt","different":"khác nhau","difficult":"khó khăn","digital":"kỹ thuật số","dinner":"bữa tối","dirty":"bẩn thỉu","discover":"khám phá","discuss":"thảo luận","display":"hiển thị","distance":"khoảng cách","divide":"chia","doctor":"bác sĩ","donate":"quyên góp","doubt":"nghi ngờ","dream":"giấc mơ","drink":"uống","drive":"lái xe","drop":"rơi xuống","drug":"thuốc","dry":"khô ráo","earn":"kiếm được","easy":"dễ dàng","eat":"ăn","economy":"kinh tế","education":"giáo dục","effect":"hiệu quả","element":"yếu tố","employ":"thuê","encourage":"khuyến khích","end":"kết thúc","energy":"năng lượng","enjoy":"tận hưởng","enter":"vào","equal":"bình đẳng","equipment":"thiết bị","error":"lỗi","escape":"thoát khỏi","essay":"bài luận","essential":"thiết yếu","establish":"thành lập","estimate":"ước tính","evening":"buổi tối","evidence":"bằng chứng","examine":"kiểm tra","example":"ví dụ","excellent":"xuất sắc","exchange":"trao đổi","exercise":"tập thể dục","exist":"tồn tại","expect":"mong đợi","expensive":"đắt tiền","experience":"kinh nghiệm","experiment":"thí nghiệm","expert":"chuyên gia","explain":"giải thích","export":"xuất khẩu","express":"diễn đạt","face":"khuôn mặt","fail":"thất bại","fair":"công bằng","faith":"đức tin","fall":"ngã","family":"gia đình","famous":"nổi tiếng","farm":"nông trại","fashion":"thời trang","fast":"nhanh","fear":"sợ hãi","feature":"đặc điểm","festival":"lễ hội","fight":"chiến đấu","find":"tìm kiếm","finish":"hoàn thành","fire":"lửa","fish":"cá","fix":"sửa chữa","flight":"chuyến bay","flower":"bông hoa","food":"thức ăn","force":"sức mạnh","forest":"rừng","forget":"quên","form":"hình thức","free":"tự do","friend":"bạn bè","friendly":"thân thiện","fruit":"trái cây","fun":"vui vẻ","funny":"buồn cười","future":"tương lai","game":"trò chơi","garden":"khu vườn","general":"chung","gift":"quà tặng","give":"cho","goal":"mục tiêu","government":"chính phủ","grade":"điểm số","great":"tuyệt vời","grow":"phát triển","growth":"sự tăng trưởng","guide":"hướng dẫn","habit":"thói quen","happen":"xảy ra","happiness":"hạnh phúc","happy":"hạnh phúc","hard":"khó khăn","head":"cái đầu","health":"sức khỏe","healthy":"khỏe mạnh","hear":"nghe","heart":"trái tim","help":"giúp đỡ","high":"cao","history":"lịch sử","hope":"hi vọng","house":"ngôi nhà","idea":"ý tưởng","ignore":"bỏ qua","image":"hình ảnh","improve":"cải thiện","include":"bao gồm","increase":"tăng","influence":"ảnh hưởng","information":"thông tin","inspire":"truyền cảm hứng","interest":"mối quan tâm","invent":"phát minh","invest":"đầu tư","investigate":"điều tra","involve":"liên quan","issue":"vấn đề","job":"công việc","join":"tham gia","judge":"phán xét","keep":"giữ","kind":"tử tế","language":"ngôn ngữ","large":"lớn","leader":"lãnh đạo","learn":"học","library":"thư viện","life":"cuộc sống","limit":"giới hạn","listen":"lắng nghe","local":"địa phương","lose":"mất","luck":"may mắn","main":"chính","maintain":"duy trì","major":"lớn","manage":"quản lý","matter":"vấn đề","media":"truyền thông","medical":"y tế","meet":"gặp gỡ","method":"phương pháp","modern":"hiện đại","money":"tiền bạc","move":"di chuyển","national":"quốc gia","natural":"tự nhiên","need":"cần thiết","negative":"tiêu cực","news":"tin tức","normal":"bình thường","ocean":"đại dương","offer":"đề nghị","opinion":"ý kiến","organize":"tổ chức","original":"nguyên bản","pain":"đau đớn","particular":"cụ thể","peace":"hòa bình","perform":"biểu diễn","period":"thời kỳ","person":"người","plan":"kế hoạch","play":"chơi","popular":"phổ biến","population":"dân số","positive":"tích cực","potential":"tiềm năng","practice":"thực hành","present":"hiện tại","prevent":"ngăn ngừa","primary":"chính yếu","principle":"nguyên tắc","private":"riêng tư","process":"quá trình","produce":"sản xuất","program":"chương trình","property":"tài sản","provide":"cung cấp","public":"công cộng","purpose":"mục đích","quality":"chất lượng","question":"câu hỏi","range":"phạm vi","reach":"đạt được","read":"đọc","reason":"lý do","recognize":"nhận ra","reflect":"suy nghĩ","region":"khu vực","relationship":"mối quan hệ","religion":"tôn giáo","rely":"phụ thuộc","remove":"loại bỏ","report":"báo cáo","require":"yêu cầu","respect":"tôn trọng","respond":"phản hồi","result":"kết quả","reveal":"tiết lộ","rise":"tăng lên","risk":"rủi ro","role":"vai trò","rule":"quy tắc","safe":"an toàn","save":"tiết kiệm","science":"khoa học","search":"tìm kiếm","section":"phần","select":"chọn lựa","sense":"giác quan","serious":"nghiêm trọng","share":"chia sẻ","similar":"tương tự","situation":"tình huống","skill":"kỹ năng","society":"xã hội","solve":"giải quyết","source":"nguồn gốc","specific":"cụ thể","spread":"lan rộng","standard":"tiêu chuẩn","statement":"tuyên bố","suggest":"đề xuất","support":"hỗ trợ","survive":"sống sót","symbol":"biểu tượng","system":"hệ thống","target":"mục tiêu","technology":"công nghệ","tend":"có xu hướng","theory":"lý thuyết","tradition":"truyền thống","transport":"vận chuyển","trend":"xu hướng","trust":"tin tưởng","truth":"sự thật","typical":"điển hình","understand":"hiểu biết","unique":"độc đáo","value":"giá trị","various":"đa dạng","violence":"bạo lực","vision":"tầm nhìn","volunteer":"tình nguyện","vote":"bỏ phiếu","wealth":"sự giàu có","wonder":"tự hỏi","worry":"lo lắng","write":"viết","wrong":"sai"};
+
+const SKIP=new Set("absorb,academic,curriculum,elaborate,evaluate,facilitate,scholarship,tuition,biodiversity,contaminate,deforestation,emission,renewable,sustainable,ecosystem,algorithm,artificial,automate,cybersecurity,database,innovation,virtual,chronic,diagnose,epidemic,immunise,nutrition,obesity,authentic,heritage,indigenous,multicultural,tradition,diversity,achieve,benefit,collaborate,consequence,demand,efficient,emerge,global,implement,inevitable,infrastructure,initiative,minority,motivate,overcome,phenomenon,pollute,poverty,preserve,promote,reliable,significant,strategy,sufficient,transform,widespread,ability,adapt,aware,challenge,communicate,concern,contribute,create,cultural,decline,determined,effective,environment,explore,generate,impact,opportunity,reduce,research,solution,achievement,analysis,attitude,concentrate,discipline,effort,intelligence,knowledge,participate,succeed,atmosphere,collapse,consume,crisis,damage,flood,protect,species,waste,wildlife,accurate,application,device,network,software,disease,mental,recover,stress,community".split(','));
+
+const TOPIC={education:["school","learn","study","exam","teach","class","student","academic","course","degree","lecture","university","grade","assignment","curriculum"],environment:["environment","climate","nature","forest","ocean","wild","eco","sustain","pollut","recycle","carbon","emission","species","habitat","flood","drought"],technology:["tech","digital","computer","internet","software","data","network","device","robot","algorithm","cyber","virtual","online","electronic","program"],health:["health","medical","doctor","hospital","disease","medicine","diet","exercise","mental","cancer","virus","therapy","surgery","physical","immune"],culture:["culture","tradition","heritage","language","religion","society","community","festival","ceremony","identity","art","music","custom"]};
+
+function getTopic(w){
+  for(const[t,words]of Object.entries(TOPIC)){
+    if(words.some(k=>w.includes(k)))return t;
+  }
+  return "education";
+}
+
+function go(){
+  const text=document.getElementById('inp').value;
+  if(!text.trim()){alert('Vui lòng dán nội dung Oxford 3000!');return;}
+  
+  const posMap={"n.":"noun","v.":"verb","adj.":"adjective","adv.":"adverb","prep.":"preposition","conj.":"conjunction","pron.":"pronoun","det.":"determiner","modal v.":"modal verb","exclam.":"exclamation","number":"noun","indefinite article":"determiner","definite article":"determiner"};
+  
+  const seen=new Set(SKIP);
+  const results=[];
+  let id=111;
+  
+  for(const line of text.split('\n')){
+    const t=line.trim();
+    if(!t||t.startsWith('©')||t.startsWith('The Oxford'))continue;
+    
+    const m=t.match(/^([a-z][a-z\s\-']{0,20}?)\s+(n\.|v\.|adj\.|adv\.|prep\.|conj\.|pron\.|det\.|modal v\.|exclam\.|number|indefinite article|definite article).*?(A1|A2|B1|B2)/i);
+    if(!m)continue;
+    
+    const word=m[1].trim().toLowerCase();
+    if(seen.has(word)||word.length<2)continue;
+    seen.add(word);
+    
+    const pos=posMap[m[2].trim()]||'noun';
+    const level=m[3];
+    const meaning_vn=VN[word]||'(đang cập nhật)';
+    const topic=getTopic(word);
+    
+    results.push(`  {id:${id++},word:"${word}",pos:"${pos}",ipa:"",level:"${level}",topic:"${topic}",meaning_vn:"${meaning_vn}",meaning_en:"",collocations:[],examples:[],synonyms:[]}`);
+  }
+  
+  const out=`// Oxford 3000 Auto-Generated - ${results.length} words\nconst VOCAB_OXFORD=[\n${results.join(',\n')}\n];\nif(typeof VOCABULARY!=='undefined')VOCABULARY.push(...VOCAB_OXFORD);\n`;
+  document.getElementById('out').value=out;
+  document.getElementById('stats').textContent=`✅ Tạo thành công ${results.length} từ! Hãy copy và lưu vào js/data-oxford.js`;
+}
+
+function cp(){
+  const el=document.getElementById('out');
+  el.select();
+  document.execCommand('copy');
+  alert('Đã copy! Paste vào file js/data-oxford.js');
+}
+</script>
+</body>
+</html>

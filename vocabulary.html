@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Từ Vựng Oxford 3000 – EnglishPro THPT</title>
+  <meta name="description"
+    content="Học toàn bộ 3000 từ vựng Oxford quan trọng nhất cho kỳ thi THPT Quốc Gia. Có phiên âm, âm thanh, ví dụ thực tế." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/vocabulary.css" />
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <rect width="28" height="28" rx="8" fill="url(#logoGrad)" />
+            <text x="14" y="20" text-anchor="middle" fill="white" font-size="14" font-weight="800"
+              font-family="Inter">E</text>
+            <defs>
+              <linearGradient id="logoGrad" x1="0" y1="0" x2="28" y2="28">
+                <stop offset="0%" stop-color="#6366f1" />
+                <stop offset="100%" stop-color="#8b5cf6" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span>EnglishPro <span class="logo-accent">THPT</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="vocabulary.html" class="nav-link active">Từ Vựng Oxford</a></li>
+        <li><a href="grammar.html" class="nav-link">Cấu Trúc THPT</a></li>
+        <li><a href="practice.html" class="nav-link">Luyện Đề</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="btn-ghost" onclick="openAuthModal('login')" id="loginBtn">Đăng nhập</button>
+        <button class="btn-primary" onclick="openAuthModal('register')" id="registerBtn">Đăng ký</button>
+        <div class="user-menu hidden" id="userMenu">
+          <div class="user-avatar" id="userAvatar">A</div>
+          <span id="userNameDisplay">Học sinh</span>
+          <button class="btn-ghost btn-sm" onclick="logout()">Đăng xuất</button>
+        </div>
+      </div>
+      <button class="nav-toggle" id="navToggle" onclick="toggleNav()"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header vocab-page-header">
+    <div class="container">
+      <div class="page-header-content">
+        <div class="breadcrumb">
+          <a href="index.html">Trang chủ</a>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+          <span>Từ Vựng Oxford</span>
+        </div>
+        <h1 class="page-title">Từ Vựng Oxford <span class="gradient-text">3000</span></h1>
+        <p class="page-subtitle">3000 từ quan trọng nhất cho kỳ thi THPT Quốc Gia · Phiên âm IPA · Âm thanh chuẩn · Ví
+          dụ thực tế</p>
+
+        <div class="vocab-search-bar">
+          <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+          <input type="text" id="vocabSearchInput" placeholder="Tìm từ vựng... (vd: environment, absorb)"
+            oninput="filterVocab()" />
+          <button class="clear-search" onclick="clearSearch()" id="clearSearchBtn" style="display:none;">✕</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN LAYOUT -->
+  <div class="vocab-layout container">
+
+    <!-- SIDEBAR FILTERS -->
+    <aside class="vocab-sidebar" id="vocabSidebar">
+      <div class="sidebar-section">
+        <h3 class="sidebar-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+          </svg>
+          Bộ lọc
+        </h3>
+      </div>
+
+      <!-- Level Filter -->
+      <div class="sidebar-section">
+        <h4 class="filter-title">Cấp độ</h4>
+        <div class="filter-chips">
+          <button class="filter-chip active" data-filter="level" data-value="all"
+            onclick="setFilter('level','all',this)">Tất cả</button>
+          <button class="filter-chip level-chip-a1" data-filter="level" data-value="A1"
+            onclick="setFilter('level','A1',this)">A1</button>
+          <button class="filter-chip level-chip-a2" data-filter="level" data-value="A2"
+            onclick="setFilter('level','A2',this)">A2</button>
+          <button class="filter-chip level-chip-b1" data-filter="level" data-value="B1"
+            onclick="setFilter('level','B1',this)">B1</button>
+          <button class="filter-chip level-chip-b2" data-filter="level" data-value="B2"
+            onclick="setFilter('level','B2',this)">B2</button>
+        </div>
+      </div>
+
+      <!-- Part of Speech Filter -->
+      <div class="sidebar-section">
+        <h4 class="filter-title">Từ loại</h4>
+        <div class="filter-list">
+          <label class="filter-check"><input type="radio" name="pos" value="all" checked
+              onchange="setFilter('pos','all',this)"><span>Tất cả</span></label>
+          <label class="filter-check"><input type="radio" name="pos" value="noun"
+              onchange="setFilter('pos','noun',this)"><span>Danh từ (Noun)</span></label>
+          <label class="filter-check"><input type="radio" name="pos" value="verb"
+              onchange="setFilter('pos','verb',this)"><span>Động từ (Verb)</span></label>
+          <label class="filter-check"><input type="radio" name="pos" value="adjective"
+              onchange="setFilter('pos','adjective',this)"><span>Tính từ (Adj)</span></label>
+          <label class="filter-check"><input type="radio" name="pos" value="adverb"
+              onchange="setFilter('pos','adverb',this)"><span>Trạng từ (Adv)</span></label>
+        </div>
+      </div>
+
+      <!-- Topic Filter -->
+      <div class="sidebar-section">
+        <h4 class="filter-title">Chủ đề THPT</h4>
+        <div class="filter-topics">
+          <button class="topic-chip active" data-filter="topic" data-value="all"
+            onclick="setFilter('topic','all',this)">
+            <span>🌐</span> Tất cả
+          </button>
+          <button class="topic-chip" data-filter="topic" data-value="education"
+            onclick="setFilter('topic','education',this)">
+            <span>📚</span> Education
+          </button>
+          <button class="topic-chip" data-filter="topic" data-value="environment"
+            onclick="setFilter('topic','environment',this)">
+            <span>🌿</span> Environment
+          </button>
+          <button class="topic-chip" data-filter="topic" data-value="technology"
+            onclick="setFilter('topic','technology',this)">
+            <span>💻</span> Technology
+          </button>
+          <button class="topic-chip" data-filter="topic" data-value="culture"
+            onclick="setFilter('topic','culture',this)">
+            <span>🏮</span> Culture
+          </button>
+          <button class="topic-chip" data-filter="topic" data-value="health" onclick="setFilter('topic','health',this)">
+            <span>❤️</span> Health
+          </button>
+        </div>
+      </div>
+
+      <!-- Status Filter (logged in) -->
+      <div class="sidebar-section" id="statusFilter">
+        <h4 class="filter-title">Trạng thái học</h4>
+        <div class="filter-list">
+          <label class="filter-check"><input type="radio" name="status" value="all" checked
+              onchange="setFilter('status','all',this)"><span>Tất cả</span></label>
+          <label class="filter-check"><input type="radio" name="status" value="new"
+              onchange="setFilter('status','new',this)"><span>Chưa học</span></label>
+          <label class="filter-check"><input type="radio" name="status" value="learning"
+              onchange="setFilter('status','learning',this)"><span>Đang học</span></label>
+          <label class="filter-check"><input type="radio" name="status" value="mastered"
+              onchange="setFilter('status','mastered',this)"><span>Đã thuộc</span></label>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="sidebar-stats">
+        <div class="sidebar-stat-item">
+          <span class="sidebar-stat-num" id="totalWordsCount">0</span>
+          <span class="sidebar-stat-label">Tổng từ</span>
+        </div>
+        <div class="sidebar-stat-item">
+          <span class="sidebar-stat-num" id="masteredWordsCount">0</span>
+          <span class="sidebar-stat-label">Đã thuộc</span>
+        </div>
+        <div class="sidebar-stat-item">
+          <span class="sidebar-stat-num" id="learningWordsCount">0</span>
+          <span class="sidebar-stat-label">Đang học</span>
+        </div>
+      </div>
+
+      <button class="btn-flashcard-mode" onclick="window.location.href='practice.html?mode=flashcard'">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="4" width="20" height="16" rx="2" />
+          <path d="M12 9v6" />
+          <path d="M9 12h6" />
+        </svg>
+        Luyện Flashcard →
+      </button>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="vocab-main">
+      <!-- Sort & View Controls -->
+      <div class="vocab-controls">
+        <div class="results-info">
+          Hiển thị <strong id="resultsCount">0</strong> từ vựng
+        </div>
+        <div class="view-controls">
+          <button class="view-btn active" id="gridViewBtn" onclick="setView('grid')" title="Dạng lưới">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="7" />
+              <rect x="14" y="3" width="7" height="7" />
+              <rect x="14" y="14" width="7" height="7" />
+              <rect x="3" y="14" width="7" height="7" />
+            </svg>
+          </button>
+          <button class="view-btn" id="listViewBtn" onclick="setView('list')" title="Dạng danh sách">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="8" y1="6" x2="21" y2="6" />
+              <line x1="8" y1="12" x2="21" y2="12" />
+              <line x1="8" y1="18" x2="21" y2="18" />
+              <line x1="3" y1="6" x2="3.01" y2="6" />
+              <line x1="3" y1="12" x2="3.01" y2="12" />
+              <line x1="3" y1="18" x2="3.01" y2="18" />
+            </svg>
+          </button>
+          <select id="sortSelect" onchange="setSortOrder(this.value)" class="sort-select">
+            <option value="default">Mặc định</option>
+            <option value="az">A → Z</option>
+            <option value="za">Z → A</option>
+            <option value="level">Theo cấp độ</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Word Cards Grid -->
+      <div class="vocab-grid" id="vocabGrid">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination" id="paginationDiv">
+        <button class="page-btn" id="prevBtn" onclick="changePage(-1)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+          Trước
+        </button>
+        <div class="page-numbers" id="pageNumbers"></div>
+        <button class="page-btn" id="nextBtn" onclick="changePage(1)">
+          Tiếp
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </button>
+      </div>
+    </main>
+  </div>
+
+  <!-- WORD DETAIL MODAL -->
+  <div class="modal-overlay" id="wordModal" onclick="closeWordModal(event)">
+    <div class="word-modal-content" id="wordModalContent">
+      <button class="modal-close" onclick="closeModal()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+
+      <!-- Word Header -->
+      <div class="word-modal-header">
+        <div class="word-modal-main">
+          <div class="word-modal-title-row">
+            <h2 class="word-modal-name" id="modal-word-name">word</h2>
+            <span class="word-modal-pos" id="modal-word-pos">noun</span>
+            <span class="word-modal-level" id="modal-word-level">B1</span>
+          </div>
+          <div class="word-modal-phonetics">
+            <span class="ipa-label">IPA:</span>
+            <span class="ipa-text" id="modal-ipa">/wɜːd/</span>
+            <button class="audio-btn" onclick="playModalAudio('uk')" title="Phát âm Anh-Anh">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                <path d="M15.54 8.46a5 5 0 010 7.07" />
+              </svg>
+              UK
+            </button>
+            <button class="audio-btn" onclick="playModalAudio('us')" title="Phát âm Anh-Mỹ">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                <path d="M19.07 4.93a10 10 0 010 14.14" />
+                <path d="M15.54 8.46a5 5 0 010 7.07" />
+              </svg>
+              US
+            </button>
+          </div>
+        </div>
+        <div class="word-modal-topic-badge" id="modal-topic-badge">Education</div>
+      </div>
+
+      <!-- Meanings -->
+      <div class="word-modal-section">
+        <div class="modal-meaning-vn">
+          <span class="meaning-flag">🇻🇳</span>
+          <div>
+            <span class="meaning-label">Tiếng Việt</span>
+            <p id="modal-meaning-vn">nghĩa tiếng Việt</p>
+          </div>
+        </div>
+        <div class="modal-meaning-en">
+          <span class="meaning-flag">🇬🇧</span>
+          <div>
+            <span class="meaning-label">English Definition</span>
+            <p id="modal-meaning-en">English definition here</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Collocations -->
+      <div class="word-modal-section">
+        <h4 class="modal-section-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 3a2.828 2.828 0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z" />
+          </svg>
+          Collocation đi kèm
+        </h4>
+        <div class="collocation-tags" id="modal-collocations"></div>
+      </div>
+
+      <!-- Examples -->
+      <div class="word-modal-section">
+        <h4 class="modal-section-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+          </svg>
+          Câu ví dụ thực tế (Đề THPT)
+        </h4>
+        <div id="modal-examples" class="examples-list"></div>
+      </div>
+
+      <!-- Synonyms -->
+      <div class="word-modal-section" id="synonymsSection">
+        <h4 class="modal-section-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="7 17 17 7" />
+            <polyline points="7 7 17 7 17 17" />
+          </svg>
+          Từ đồng nghĩa
+        </h4>
+        <div class="synonym-tags" id="modal-synonyms"></div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="word-modal-actions">
+        <button class="modal-btn-mastered" id="btnMastered" onclick="markCurrentWord(2)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+          Đã thuộc
+        </button>
+        <button class="modal-btn-review" id="btnReview" onclick="markCurrentWord(1)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="1 4 1 10 7 10" />
+            <path d="M3.51 15a9 9 0 102.13-9.36L1 10" />
+          </svg>
+          Cần ôn lại
+        </button>
+        <button class="modal-btn-next" onclick="showNextWord()">
+          Từ tiếp theo
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUTH MODAL (shared) -->
+  <div class="modal-overlay" id="authModal" onclick="closeAuthModal(event)">
+    <div class="modal" id="authModalContent">
+      <button class="modal-close" onclick="closeModal()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg></button>
+      <div class="modal-tabs">
+        <button class="tab-btn active" id="loginTab" onclick="switchTab('login')">Đăng nhập</button>
+        <button class="tab-btn" id="registerTab" onclick="switchTab('register')">Đăng ký</button>
+      </div>
+      <div class="tab-content active" id="loginContent">
+        <div class="modal-header">
+          <h2>Chào mừng trở lại! 👋</h2>
+          <p>Tiếp tục hành trình học tiếng Anh của bạn</p>
+        </div>
+        <form onsubmit="handleLogin(event)">
+          <div class="form-group"><label>Email</label><input type="email" id="loginEmail"
+              placeholder="example@email.com" required /></div>
+          <div class="form-group"><label>Mật khẩu</label><input type="password" id="loginPassword"
+              placeholder="••••••••" required /></div>
+          <button type="submit" class="btn-primary btn-full">Đăng nhập</button>
+        </form>
+        <p class="modal-switch">Chưa có tài khoản? <a onclick="switchTab('register')">Đăng ký ngay</a></p>
+      </div>
+      <div class="tab-content" id="registerContent">
+        <div class="modal-header">
+          <h2>Bắt đầu miễn phí! 🚀</h2>
+          <p>Tạo tài khoản để theo dõi tiến độ học tập</p>
+        </div>
+        <form onsubmit="handleRegister(event)">
+          <div class="form-group"><label>Tên học sinh</label><input type="text" id="regName" placeholder="Nguyễn Văn A"
+              required /></div>
+          <div class="form-group"><label>Email</label><input type="email" id="regEmail" placeholder="example@email.com"
+              required /></div>
+          <div class="form-group"><label>Mật khẩu</label><input type="password" id="regPassword"
+              placeholder="Tối thiểu 6 ký tự" required /></div>
+          <div class="form-group"><label>Mục tiêu điểm THPT</label><select id="regTarget">
+              <option value="8" selected>8.0 – Khá Giỏi</option>
+              <option value="9">9.0 – Xuất sắc</option>
+              <option value="10">10.0 – Hoàn hảo</option>
+            </select></div>
+          <button type="submit" class="btn-primary btn-full">Tạo tài khoản</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>© 2025 EnglishPro THPT · <a href="index.html">Trang chủ</a> · <a href="grammar.html">Ngữ pháp</a> · <a
+            href="practice.html">Luyện đề</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/data-extra.js"></script>
+  <script src="js/data-oxford.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/vocabulary.js"></script>
+</body>
+
+</html>
