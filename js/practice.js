@@ -89,8 +89,12 @@ function showFlashcardSelector() {
   if (!selectorEl) {
     selectorEl = document.createElement('div');
     selectorEl.id = 'flashcardSelector';
-    document.querySelector('.container.practice-hub-content')?.parentElement?.appendChild(selectorEl) ||
+    const hub = document.getElementById('practiceHub');
+    if (hub && hub.parentElement) {
+      hub.parentElement.insertBefore(selectorEl, hub.nextSibling);
+    } else {
       document.body.appendChild(selectorEl);
+    }
   }
   selectorEl.style.display = 'block';
 
