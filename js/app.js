@@ -89,13 +89,35 @@ function handleLogin(e) {
 
   // Simulate login (local storage based)
   const savedUsers = JSON.parse(localStorage.getItem('ep_users') || '[]');
-  const user = savedUsers.find(u => u.email === email && u.password === password);
+  const user = savedUsers.find(u => u.email === email && (u.password === simpleHash(password) || u.password === password));
 
   if (user) {
     loginSuccess(user);
   } else {
     showToast('❌', 'Email hoặc mật khẩu không đúng!');
   }
+}
+
+function handleForgotPassword() {
+  const email = document.getElementById('loginEmail').value;
+  if (!email) {
+    showToast('⚠️', 'Vui lòng nhập email trước!');
+    return;
+  }
+  const savedUsers = JSON.parse(localStorage.getItem('ep_users') || '[]');
+  const user = savedUsers.find(u => u.email === email);
+  if (!user) {
+    showToast('❌', 'Email chưa được đăng ký!');
+    return;
+  }
+  const newPassword = prompt('Nhập mật khẩu mới (tối thiểu 6 ký tự):');
+  if (!newPassword || newPassword.length < 6) {
+    showToast('⚠️', 'Mật khẩu phải có ít nhất 6 ký tự!');
+    return;
+  }
+  user.password = simpleHash(newPassword);
+  localStorage.setItem('ep_users', JSON.stringify(savedUsers));
+  showToast('✅', 'Đặt lại mật khẩu thành công! Hãy đăng nhập lại.');
 }
 
 function handleRegister(e) {
@@ -120,7 +142,7 @@ function handleRegister(e) {
     id: Date.now(),
     name,
     email,
-    password,
+    password: simpleHash(password),
     target: parseFloat(target),
     streak: 0,
     joinDate: new Date().toISOString()
@@ -226,7 +248,7 @@ function updateStreak() {
 
   // Update streak display
   const streakEl = document.getElementById('streakNumber');
-  if (streakEl) streakEl.textContent = currentUser.streak || 7;
+  if (streakEl) streakEl.textContent = currentUser.streak || 0;
 }
 
 // ---- DASHBOARD ----
@@ -273,12 +295,13 @@ function renderHeatmap() {
       const day = document.createElement('div');
       day.className = 'heatmap-day';
 
-      // Generate random activity (in real app, use actual data)
       const date = new Date(Date.now() - ((weeks - w) * 7 + (7 - d)) * 86400000);
-      const seed = date.getDate() + date.getMonth() * 31;
-      const level = w < 24 ? Math.floor((Math.sin(seed * 0.7 + w * 0.3) + 1.2) * 2.1) % 5 : (d < 5 ? Math.floor(Math.random() * 4) : 0);
+      const dateKey = date.toISOString().split('T')[0];
+      const activityLog = JSON.parse(localStorage.getItem('ep_activity_' + (currentUser ? currentUser.id : '')) || '{}');
+      const mins = activityLog[dateKey] || 0;
+      const level = mins === 0 ? 0 : mins < 10 ? 1 : mins < 25 ? 2 : mins < 45 ? 3 : 4;
       day.classList.add(`l${level}`);
-      day.title = `${date.toLocaleDateString('vi-VN')}: ${level > 0 ? level * 8 + ' phút học' : 'Chưa học'}`;
+      day.title = `${date.toLocaleDateString('vi-VN')}: ${mins > 0 ? mins + ' phút học' : 'Chưa học'}`;
 
       week.appendChild(day);
     }
@@ -320,6 +343,42 @@ function playAudio(type, word) {
 function playModalAudio(type) {
   const word = document.getElementById('modal-word-name')?.textContent;
   playAudio(type, word);
+}
+
+// ---- ACTIVITY TRACKING ----
+let _activityStart = Date.now();
+
+function trackActivity() {
+  if (!currentUser) return;
+  const elapsed = Math.floor((Date.now() - _activityStart) / 60000);
+  if (elapsed < 1) return;
+  const today = new Date().toISOString().split('T')[0];
+  const key = 'ep_activity_' + currentUser.id;
+  const log = JSON.parse(localStorage.getItem(key) || '{}');
+  log[today] = (log[today] || 0) + elapsed;
+  localStorage.setItem(key, JSON.stringify(log));
+  _activityStart = Date.now();
+}
+
+function getTodayStudyMinutes() {
+  if (!currentUser) return 0;
+  const today = new Date().toISOString().split('T')[0];
+  const log = JSON.parse(localStorage.getItem('ep_activity_' + currentUser.id) || '{}');
+  return log[today] || 0;
+}
+
+setInterval(trackActivity, 60000);
+window.addEventListener('beforeunload', trackActivity);
+
+// ---- PASSWORD HASHING (simple hash for localStorage) ----
+function simpleHash(str) {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash;
+  }
+  return 'h_' + Math.abs(hash).toString(36);
 }
 
 // ---- KEYBOARD SHORTCUTS ----

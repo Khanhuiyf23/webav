@@ -560,13 +560,26 @@
   .practice-quick-stats { grid-template-columns: repeat(2, 1fr); }
   .results-breakdown { grid-template-columns: repeat(2, 1fr); }
 }
+@media (max-width: 768px) {
+  .practice-hub { padding-top: calc(68px + 16px); }
+  .practice-mode-card { padding: var(--space-4); }
+  .mode-card-title { font-size: 1.1rem; }
+  .flashcard-section-select { flex-wrap: wrap; gap: var(--space-2); }
+}
 @media (max-width: 600px) {
-  .flashcard-arena { padding: var(--space-4); }
-  .fc-word { font-size: 2rem; }
+  .flashcard-arena { padding: var(--space-3); }
+  .flashcard-card { min-height: 280px; padding: var(--space-5); }
+  .fc-word { font-size: 1.8rem; }
   .fc-rating-buttons { flex-direction: column; width: 100%; max-width: 300px; }
-  .fc-btn-forgot, .fc-btn-hard, .fc-btn-easy { min-width: unset; }
+  .fc-btn-forgot, .fc-btn-hard, .fc-btn-easy { min-width: unset; width: 100%; }
   .exam-topbar { flex-direction: column; align-items: flex-start; gap: var(--space-2); }
   .config-grid { grid-template-columns: 1fr; }
   .session-stats-grid { flex-direction: column; }
   .practice-quick-stats { grid-template-columns: 1fr 1fr; }
+  .exam-results-card { padding: var(--space-5); margin: 0 var(--space-3); }
+  .score-num { font-size: 3.5rem; }
+  .results-breakdown { grid-template-columns: 1fr 1fr; gap: var(--space-2); }
+  .results-actions { flex-direction: column; align-items: center; }
+  .eq-options { padding-left: 0; }
+  .eq-question-row { flex-direction: column; gap: var(--space-1); }
 }

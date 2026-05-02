@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Giới thiệu – EnglishPro THPT</title>
+  <meta name="description" content="EnglishPro THPT - Nền tảng luyện thi Tiếng Anh THPT Quốc Gia miễn phí cho học sinh Việt Nam." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='32' height='32' rx='8' fill='%236366f1'/%3E%3Ctext x='16' y='23' text-anchor='middle' fill='white' font-size='18' font-weight='800' font-family='Inter,sans-serif'%3EE%3C/text%3E%3C/svg%3E" />
+  <meta property="og:title" content="Gi&#7899;i thi&#7879;u EnglishPro THPT" />
+  <meta property="og:description" content="N&#7873;n t&#7843;ng luy&#7879;n thi Ti&#7871;ng Anh THPT mi&#7877;n ph&#237; cho h&#7885;c sinh Vi&#7879;t Nam." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="vi_VN" />
+  <style>
+    .about-page { padding: calc(68px + 40px) 0 60px; min-height: 100vh; }
+    .about-section { margin-bottom: 48px; }
+    .about-section h2 { font-size: 1.6rem; margin-bottom: 16px; color: var(--text-primary); }
+    .about-section h2 .gradient-text { background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .about-section p, .about-section li { color: var(--text-secondary); line-height: 1.8; font-size: 0.95rem; }
+    .about-section ul { padding-left: 20px; }
+    .about-section li { margin-bottom: 8px; }
+    .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 20px; }
+    .about-card { background: var(--bg-card); border: 1px solid var(--bg-border); border-radius: var(--radius-lg); padding: 24px; }
+    .about-card h3 { font-size: 1.1rem; margin-bottom: 8px; color: var(--text-primary); }
+    .about-card p { font-size: 0.9rem; }
+    .contact-info { display: flex; flex-direction: column; gap: 12px; margin-top: 16px; }
+    .contact-item { display: flex; align-items: center; gap: 12px; color: var(--text-secondary); font-size: 0.95rem; }
+    .contact-item svg { color: var(--primary-light); flex-shrink: 0; }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <rect width="28" height="28" rx="8" fill="url(#logoGrad)" />
+          <text x="14" y="20" text-anchor="middle" fill="white" font-size="14" font-weight="800" font-family="Inter">E</text>
+          <defs><linearGradient id="logoGrad" x1="0" y1="0" x2="28" y2="28"><stop offset="0%" stop-color="#6366f1" /><stop offset="100%" stop-color="#8b5cf6" /></linearGradient></defs>
+        </svg>
+      </div>
+      <span>EnglishPro <span class="logo-accent">THPT</span></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="vocabulary.html" class="nav-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" /></svg>
+        Từ Vựng Oxford</a></li>
+      <li><a href="grammar.html" class="nav-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7.5L14.5 2z" /><polyline points="14 2 14 8 20 8" /></svg>
+        Cấu Trúc THPT</a></li>
+      <li><a href="practice.html" class="nav-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3" /></svg>
+        Luyện Đề</a></li>
+      <li><a href="collocations.html" class="nav-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 3a2.828 2.828 0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z" /></svg>
+        Học Cụm Từ</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn-ghost" onclick="openAuthModal('login')" id="loginBtn">Đăng nhập</button>
+      <button class="btn-primary" onclick="openAuthModal('register')" id="registerBtn">Đăng ký</button>
+      <div class="user-menu hidden" id="userMenu">
+        <div class="user-avatar" id="userAvatar">A</div>
+        <span id="userNameDisplay">Học sinh</span>
+        <button class="btn-ghost btn-sm" onclick="logout()">Đăng xuất</button>
+      </div>
+    </div>
+    <button class="nav-toggle" id="navToggle" onclick="toggleNav()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="about-page">
+  <div class="container">
+    <!-- Giới thiệu -->
+    <div class="about-section" id="about">
+      <h2><span class="gradient-text">EnglishPro THPT</span> — Giới thiệu</h2>
+      <p>
+        EnglishPro THPT là nền tảng học Tiếng Anh trực tuyến miễn phí, được thiết kế đặc biệt cho học sinh THPT Việt Nam
+        đang chuẩn bị cho kỳ thi Quốc Gia. Chúng tôi kết hợp bộ từ vựng Oxford 3000, 14 chuyên đề ngữ pháp trọng tâm,
+        và hệ thống luyện đề thi thử theo format mới nhất của Bộ GD&ĐT.
+      </p>
+    </div>
+
+    <!-- Phương pháp học -->
+    <div class="about-section" id="method">
+      <h2>Phương pháp học</h2>
+      <div class="about-grid">
+        <div class="about-card">
+          <h3>Spaced Repetition</h3>
+          <p>Thuật toán ôn tập khoa học giúp bạn nhớ từ vựng lâu hơn. Hệ thống tự động lên lịch ôn tập dựa trên mức độ ghi nhớ của bạn.</p>
+        </div>
+        <div class="about-card">
+          <h3>Học theo chủ đề</h3>
+          <p>5 chủ đề trọng tâm THPT: Education, Environment, Technology, Culture, Health — đúng cấu trúc đề thi thực tế.</p>
+        </div>
+        <div class="about-card">
+          <h3>Mini Quiz sau mỗi bài</h3>
+          <p>Kiểm tra kiến thức ngay sau khi học với quiz tương tác. Đánh giá đúng-sai kèm giải thích chi tiết.</p>
+        </div>
+        <div class="about-card">
+          <h3>Thi thử format chuẩn</h3>
+          <p>Đề thi thử theo đúng format Bộ GD&ĐT với đồng hồ đếm ngược 50 phút, giúp bạn làm quen áp lực thi thật.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nội dung -->
+    <div class="about-section">
+      <h2>Nội dung học tập</h2>
+      <ul>
+        <li><strong>3000+ từ vựng Oxford</strong> — Bộ từ quan trọng nhất cho kỳ thi, có phiên âm IPA, âm thanh Anh-Mỹ</li>
+        <li><strong>14 chuyên đề ngữ pháp</strong> — Thì, câu bị động, mệnh đề quan hệ, liên từ, và nhiều hơn nữa</li>
+        <li><strong>500+ câu hỏi luyện tập</strong> — Từ vựng, ngữ pháp, đọc hiểu theo format đề thi</li>
+        <li><strong>Dashboard tiến độ</strong> — Theo dõi streak, heatmap học tập, thống kê chi tiết</li>
+      </ul>
+    </div>
+
+    <!-- Liên hệ -->
+    <div class="about-section" id="contact">
+      <h2>Liên hệ</h2>
+      <p>Nếu bạn có câu hỏi, góp ý, hoặc muốn hợp tác, hãy liên hệ với chúng tôi:</p>
+      <div class="contact-info">
+        <div class="contact-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span>Email: englishpro.thpt@gmail.com</span>
+        </div>
+        <div class="contact-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Việt Nam</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AUTH MODAL -->
+<div class="modal-overlay" id="authModal" onclick="closeAuthModal(event)">
+  <div class="modal" id="authModalContent">
+    <button class="modal-close" onclick="closeModal()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="modal-tabs"><button class="tab-btn active" id="loginTab" onclick="switchTab('login')">Đăng nhập</button><button class="tab-btn" id="registerTab" onclick="switchTab('register')">Đăng ký</button></div>
+    <div class="tab-content active" id="loginContent">
+      <div class="modal-header"><h2>Chào mừng trở lại! 👋</h2><p>Tiếp tục hành trình học tiếng Anh của bạn</p></div>
+      <form onsubmit="handleLogin(event)"><div class="form-group"><label>Email</label><input type="email" id="loginEmail" placeholder="example@email.com" required /></div><div class="form-group"><label>Mật khẩu</label><input type="password" id="loginPassword" placeholder="••••••••" required /></div><button type="submit" class="btn-primary btn-full">Đăng nhập</button><p style="text-align:center;margin-top:8px;"><a onclick="handleForgotPassword()" style="cursor:pointer;color:var(--primary-light);font-size:0.85rem;">Quên mật khẩu?</a></p></form>
+      <p class="modal-switch">Chưa có tài khoản? <a onclick="switchTab('register')">Đăng ký ngay</a></p>
+    </div>
+    <div class="tab-content" id="registerContent">
+      <div class="modal-header"><h2>Bắt đầu miễn phí! 🚀</h2><p>Tạo tài khoản để theo dõi tiến độ học tập</p></div>
+      <form onsubmit="handleRegister(event)"><div class="form-group"><label>Tên học sinh</label><input type="text" id="regName" placeholder="Nguyễn Văn A" required /></div><div class="form-group"><label>Email</label><input type="email" id="regEmail" placeholder="example@email.com" required /></div><div class="form-group"><label>Mật khẩu</label><input type="password" id="regPassword" placeholder="Tối thiểu 6 ký tự" required /></div><div class="form-group"><label>Mục tiêu điểm THPT</label><select id="regTarget"><option value="6">6.0 – Đủ điểm xét tuyển</option><option value="7">7.0 – Trung bình khá</option><option value="8" selected>8.0 – Khá Giỏi</option><option value="9">9.0 – Xuất sắc</option><option value="10">10.0 – Hoàn hảo tuyệt đối</option></select></div><button type="submit" class="btn-primary btn-full">Tạo tài khoản</button></form>
+      <p class="modal-switch">Đã có tài khoản? <a onclick="switchTab('login')">Đăng nhập</a></p>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <p>&copy; 2025 EnglishPro THPT &middot; <a href="index.html">Trang chủ</a> &middot; <a href="vocabulary.html">Từ vựng</a> &middot; <a href="grammar.html">Ngữ pháp</a> &middot; <a href="practice.html">Luyện đề</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/data-extra.js"></script>
+<script src="js/data-oxford.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
